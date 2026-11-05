@@ -27,8 +27,8 @@ jobs:
       id-token: write
       actions: read
     uses: industrial-mathematics-group/.github/.github/workflows/claude.yml@main
-    # with:
-    #   node-version: "22"                        # the Astro website
+    with:
+      node-version: "26"                        # the Astro website
     #   model: claude-opus-5-5                    # a stronger model for this repository
     #   model-name: Claude Opus 5.5 (Anthropic)   # keep in step with model
     secrets: inherit
