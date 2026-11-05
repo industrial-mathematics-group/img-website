@@ -8,7 +8,7 @@ A fully static Astro site, deployed to GitHub Pages. There is no server, databas
 npm ci                 # install from the lockfile
 npm run dev            # local preview at http://localhost:4321
 npm run check          # type check, build and internal link check; run before every PR
-npm run test:scripts   # tests for the scripts in scripts/
+npm run test:scripts   # tests for the scripts in scripts/ and the demo model
 ```
 
 The Node.js version is set in `.nvmrc`, and all workflows read it from there. To change it, edit that file and `engines` in `package.json`.
@@ -26,7 +26,7 @@ The Node.js version is set in `.nvmrc`, and all workflows read it from there. To
 | Name, address, navigation, external links | `src/data/site.ts` |
 | Colours, type and layout | `src/styles/global.css` |
 | Allowed fields for all content | `src/content.config.ts` |
-| Front-page demo | `public/js/traffic.js`, explained in `src/content/news/traffic-demo.md` |
+| Front-page demo | `public/js/traffic.js` (drawing and controls) and `public/js/kinetic-traffic.js` (the model), explained in `src/content/news/traffic-demo.md` |
 
 `src/data/zenodo.json` is written by `scripts/sync-zenodo.mjs` during deployment. Don't edit it by hand.
 
