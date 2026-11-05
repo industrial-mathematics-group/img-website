@@ -1,10 +1,11 @@
 # .forgejo/workflows/github-mirror.yml
 #
-# Mirrors `main` and every `claude/*` branch from Forgejo to GitHub,
-# including deletions: a `claude/*` branch that no longer exists on Forgejo
-# is deleted on GitHub. This is not a full --mirror: branches outside these
-# patterns (gh-pages from Documenter, anything created on GitHub) are never
-# touched, and tags are only created/updated (TagBot's tags stay).
+# Pushes `main_dev` and all tags from Forgejo to GitHub, on every push to
+# `main_dev` and on manual dispatch. `main_dev` is force-pushed, so GitHub's
+# `main_dev` always equals Forgejo's. No other branch is pushed or deleted:
+# `main` comes from GitHub (see sync-from-github.yml), and branches created on
+# GitHub (gh-pages from Documenter, PR branches) are never touched. Tags are
+# only created/updated, never deleted (TagBot's tags stay).
 #
 # Setup (per repo, or once at user/org level):
 #   Secret   GH_MIRROR_TOKEN  - GitHub fine-grained PAT with
@@ -56,10 +57,8 @@ jobs:
 
           dst="https://x-access-token:${GH_TOKEN}@github.com/${GH_OWNER}/${REPO_NAME}.git"
 
-          # main and claude/*, with deletions. --prune only removes GitHub
-          # branches that match a destination pattern below (main, claude/*)
-          # and have no counterpart on Forgejo; every other branch on GitHub,
-          # gh-pages included, is outside the patterns and left alone.
+          # main_dev only, force-pushed. No --prune: every other branch on
+          # GitHub, main and gh-pages included, is left alone.
           git push "$dst" \
             '+refs/heads/main_dev:refs/heads/main_dev'
 
