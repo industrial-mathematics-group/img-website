@@ -27,6 +27,8 @@ const software = defineCollection({
     repo: z.string().url(),
     docs: z.string().url().optional(),
     doi: z.string().optional(),
+    // A page of this site where the package can be tried, e.g. /software/pdestudio/.
+    demo: z.string().startsWith('/').optional(),
     order: z.number().default(100),
   }),
 });
