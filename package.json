@@ -1,0 +1,30 @@
+{
+  "name": "img-website",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=26" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check && astro build && node scripts/check-links.mjs",
+    "check:launch": "node scripts/check-launch.mjs",
+    "sync:zenodo": "node scripts/sync-zenodo.mjs",
+    "test:scripts": "node --test test/scripts.test.mjs"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "latest",
+    "@astrojs/sitemap": "latest",
+    "@fontsource-variable/source-serif-4": "latest",
+    "@fontsource-variable/space-grotesk": "latest",
+    "astro": "latest",
+    "katex": "latest",
+    "rehype-katex": "latest",
+    "remark-math": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "@types/katex": "latest",
+    "typescript": "latest"
+  }
+}

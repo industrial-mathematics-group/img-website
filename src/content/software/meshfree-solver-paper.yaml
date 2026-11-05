@@ -1,0 +1,6 @@
+name: meshfree-solver-paper
+summary: Supplementary material for our paper on meshfree MUSCL schemes, with the mathematical addendum, stability note, Lean 4 formalization, reference code and run configurations.
+group: paper-code
+language: TeX, Lean, Python and Julia
+repo: https://github.com/industrial-mathematics-group/meshfree-solver-paper
+order: 1

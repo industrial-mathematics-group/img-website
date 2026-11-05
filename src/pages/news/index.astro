@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const posts = (await getCollection('news', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+---
+
+<Layout title="News" description="News from the Industrial Mathematics Group.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>News</h1>
+    </div>
+    <ul class="entry-list" style="margin-top:2rem;max-width:44rem">
+      {posts.map((post) => (
+        <li>
+          <a class="entry-title" href={`/news/${post.id}/`}>{post.data.title}</a>
+          <p class="entry-meta">{formatDate(post.data.date)}</p>
+          <p style="margin:0.25rem 0 0">{post.data.summary}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Layout>

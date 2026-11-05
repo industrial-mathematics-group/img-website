@@ -1,0 +1,8 @@
+name: HyperCloudCore.jl
+summary: Meshfree engine for hyperbolic systems, with particle grids, MLS schemes (upwind, MUSCL, WENO), MOOD and IMEX time stepping.
+group: solve
+layer: engine
+language: Julia
+repo: https://github.com/industrial-mathematics-group/HyperCloudCore.jl
+docs: https://industrial-mathematics-group.github.io/HyperCloudCore.jl/stable/
+doi: 10.5281/zenodo.23124663

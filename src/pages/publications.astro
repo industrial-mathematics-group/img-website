@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import zenodo from '../data/zenodo.json';
+import { site } from '../data/site';
+
+const statusLabel = { manuscript: 'Manuscript', preprint: 'Preprint', published: 'Published' };
+const publications = (await getCollection('publications')).sort((a, b) => b.data.year - a.data.year);
+const records = [...zenodo.records].sort((a, b) => b.date.localeCompare(a.date));
+---
+
+<Layout title="Publications" description="Papers and archived software releases from the Industrial Mathematics Group.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Publications</h1>
+      <p>Papers from the group, and releases archived in our <a href={site.zenodo}>Zenodo community</a>.</p>
+    </div>
+
+    <section class="section">
+      <h2>Papers</h2>
+      <div>
+        <ul class="entry-list">
+          {publications.map((entry) => (
+            <li>
+              <a class="entry-title" href={entry.data.url}>{entry.data.title}</a>
+              <p class="entry-meta">{entry.data.authors.join(', ')}. {entry.data.venue ?? statusLabel[entry.data.status]}, {entry.data.year}.</p>
+              {entry.data.code && <p class="entry-meta"><a href={entry.data.code}>Code and data</a></p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Archived releases</h2>
+      <div>
+        {records.length === 0 && <p>No records yet. Records from the Zenodo community appear here after the next site build.</p>}
+        <ul class="entry-list">
+          {records.map((record) => (
+            <li>
+              <a class="entry-title" href={`https://doi.org/${record.doi}`}>{record.title}</a>
+              <p class="entry-meta">{record.creators.join('; ')}. {record.type}{record.version ? `, version ${record.version}` : ''}, {record.date}.</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </div>
+</Layout>

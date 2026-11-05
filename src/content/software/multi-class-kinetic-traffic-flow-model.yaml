@@ -1,0 +1,6 @@
+name: multi-class-kinetic-traffic-flow-model
+summary: Numerical implementation of a multi-class kinetic traffic flow model based on a non-local Prigogine-Herman framework.
+group: paper-code
+language: MATLAB
+repo: https://github.com/industrial-mathematics-group/multi-class-kinetic-traffic-flow-model
+order: 2

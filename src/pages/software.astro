@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import PackageLinks from '../components/PackageLinks.astro';
+import SoftwareStack from '../components/SoftwareStack.astro';
+import { site } from '../data/site';
+
+const software = await getCollection('software');
+const byGroup = (group: string) =>
+  software.filter((entry) => entry.data.group === group).sort((a, b) => a.data.order - b.data.order);
+const sections = [
+  { title: 'Tools', entries: byGroup('tools') },
+  { title: 'Code for papers', entries: byGroup('paper-code') },
+];
+---
+
+<Layout title="Software" description="Open-source software from the Industrial Mathematics Group.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Software</h1>
+      <p>Our code is open source. If you use it in your research, please cite the corresponding <a href={site.zenodo}>Zenodo record</a>. Each repository lists its citation.</p>
+    </div>
+
+    <section class="section">
+      <h2>Julia packages</h2>
+      <div>
+        <SoftwareStack />
+        <p style="margin-top:1.25rem">HyperCloud writes its results through PDEStudioCore, so a simulation can be opened directly in PDEStudio.</p>
+      </div>
+    </section>
+
+    {sections.map((section) => (
+      <section class="section">
+        <h2>{section.title}</h2>
+        <div>
+          {section.entries.map((entry) => (
+            <div class="package-row">
+              <div class="package-name">{entry.data.name}</div>
+              <p>{entry.data.summary} Written in {entry.data.language}.</p>
+              <PackageLinks name={entry.data.name} repo={entry.data.repo} docs={entry.data.docs} doi={entry.data.doi} />
+            </div>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="section">
+      <h2>Contributing</h2>
+      <div class="prose">
+        <p>Questions, bug reports and contributions are welcome. Please open an issue in the relevant repository. AI tools are welcome too, as long as their use is declared in the pull request.</p>
+        <p><a href={site.aiPolicy}>Read the contribution guidelines and AI policy</a></p>
+      </div>
+    </section>
+  </div>
+</Layout>

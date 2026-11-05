@@ -1,0 +1,30 @@
+---
+import katex from 'katex';
+
+const equation = katex.renderToString(String.raw`\partial_t \rho + \partial_x\big(\rho(1-\rho)\big) = 0`, {
+  throwOnError: true,
+});
+---
+
+<section class="traffic" data-traffic aria-label="Interactive traffic simulation">
+  <canvas
+    hidden
+    role="img"
+    aria-label="Cars on a road below a curve of their local density. A queue forms behind a red light and dissolves when it turns green."
+  ></canvas>
+  <div class="wrap traffic-panel">
+    <p>
+      In this traffic model, each car only reacts to the gap ahead. Add more cars and their steps merge into a smooth density that follows a conservation law, <Fragment set:html={equation} />. <a href="/news/traffic-demo/">How this works</a>
+    </p>
+    <div class="controls" data-controls hidden>
+      <label>
+        Cars
+        <input type="range" min="0" max="5" step="1" value="3" data-cars />
+        <output data-cars-output>200</output>
+      </label>
+      <button type="button" data-red>Turn light red</button>
+      <button type="button" data-play>Pause</button>
+    </div>
+  </div>
+</section>
+<script is:inline src="/js/traffic.js" defer></script>

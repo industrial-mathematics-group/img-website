@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const date = post.data.date.toLocaleDateString('en-GB', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<Layout title={post.data.title} description={post.data.summary}>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>{post.data.title}</h1>
+      <p class="entry-meta">{date}</p>
+    </div>
+    <article class="prose" style="margin-top:1.5rem">
+      <Content />
+    </article>
+  </div>
+</Layout>

@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import PackageLinks from './PackageLinks.astro';
+
+const software = await getCollection('software');
+const columns = [
+  {
+    group: 'solve',
+    title: 'Solve',
+    intro: 'Meshfree solvers for hyperbolic systems.',
+  },
+  {
+    group: 'explore',
+    title: 'Explore',
+    intro: 'Parameter sweeps, cached results and interactive plots.',
+  },
+];
+const rank = { application: 0, engine: 1 };
+const inColumn = (group: string) =>
+  software
+    .filter((entry) => entry.data.group === group)
+    .sort((a, b) => rank[a.data.layer ?? 'engine'] - rank[b.data.layer ?? 'engine']);
+---
+
+<div class="stack">
+  {columns.map((column) => (
+    <div class={`stack-${column.group}`}>
+      <h3>{column.title}</h3>
+      <p class="stack-intro">{column.intro}</p>
+      {inColumn(column.group).map((entry) => (
+        <div class={`layer ${entry.data.layer ?? 'engine'}`}>
+          <div class="package-name">{entry.data.name}</div>
+          <p>{entry.data.summary}</p>
+          <PackageLinks name={entry.data.name} repo={entry.data.repo} docs={entry.data.docs} doi={entry.data.doi} />
+        </div>
+      ))}
+    </div>
+  ))}
+</div>

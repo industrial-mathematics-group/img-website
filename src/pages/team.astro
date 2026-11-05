@@ -1,0 +1,43 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { site } from '../data/site';
+
+const people = (await getCollection('people')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Layout title="Team" description="People in the Industrial Mathematics Group.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Team</h1>
+    </div>
+
+    <section class="section">
+      <h2>People</h2>
+      <div>
+        <ul class="entry-list">
+          {people.map((person) => (
+            <li>
+              <div class="entry-title">{person.data.name}</div>
+              {person.data.role && <p class="entry-meta">{person.data.role}</p>}
+              <ul class="links" style="margin-top:0.25rem">
+                {person.data.orcid && <li><a href={person.data.orcid}>ORCID</a></li>}
+                {person.data.github && <li><a href={`https://github.com/${person.data.github}`}>GitHub</a></li>}
+                {person.data.website && <li><a href={person.data.website}>Website</a></li>}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Contact</h2>
+      <div>
+        <p><a href={site.university.url}>{site.university.name}</a></p>
+        <p>{site.address.join(', ')}</p>
+        <p>For questions about our software, please <a href={site.github}>open an issue in the relevant repository</a>.</p>
+      </div>
+    </section>
+  </div>
+</Layout>

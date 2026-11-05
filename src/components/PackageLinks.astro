@@ -1,0 +1,16 @@
+---
+interface Props {
+  name: string;
+  repo: string;
+  docs?: string;
+  doi?: string;
+}
+
+const { name, repo, docs, doi } = Astro.props;
+---
+
+<ul class="links" aria-label={`Links for ${name}`}>
+  {docs && <li><a href={docs}>Docs</a></li>}
+  <li><a href={repo}>Code</a></li>
+  {doi && <li><a href={`https://doi.org/${doi}`}>DOI</a></li>}
+</ul>

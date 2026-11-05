@@ -1,0 +1,85 @@
+---
+import '@fontsource-variable/space-grotesk';
+import '@fontsource-variable/source-serif-4';
+import 'katex/dist/katex.min.css';
+import '../styles/global.css';
+import { navigation, site } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, description = site.description, noindex = false } = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : site.name;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og-image.png', Astro.site);
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={ogImage.href} />
+    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/">
+          <picture>
+            <source srcset="/logos/mark-dark.svg" media="(prefers-color-scheme: dark)" />
+            <img src="/logos/mark.svg" alt="" width="36" height="36" />
+          </picture>
+          <span>{site.name}</span>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            {navigation.map((item) => (
+              <li>
+                <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <p><a href={site.university.url}>{site.university.name}</a></p>
+            {site.address.map((line) => <p>{line}</p>)}
+          </div>
+          <ul>
+            <li><a href={site.github}>GitHub</a></li>
+            <li><a href={site.zenodo}>Zenodo community</a></li>
+            <li><a href={site.aiPolicy}>AI policy</a></li>
+          </ul>
+          <ul>
+            <li><a href="/imprint/">Imprint</a></li>
+            <li><a href="/privacy/">Privacy</a></li>
+          </ul>
+        </div>
+        <p class="fineprint">Logos © Industrial Mathematics Group, licensed under CC BY 4.0.</p>
+      </div>
+    </footer>
+  </body>
+</html>

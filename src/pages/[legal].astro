@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('legal');
+  return pages.map((page) => ({ params: { legal: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+---
+
+<Layout title={page.data.title} noindex>
+  <div class="wrap">
+    <div class="page-head">
+      <h1>{page.data.title}</h1>
+    </div>
+    <article class="prose" style="margin-top:1.5rem">
+      <Content />
+    </article>
+  </div>
+</Layout>

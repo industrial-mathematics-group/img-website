@@ -1,0 +1,38 @@
+{
+  "source": "CITATION.cff files of the group's repositories; replaced by scripts/sync-zenodo.mjs on the first deployment",
+  "updated": null,
+  "records": [
+    {
+      "title": "PDEStudio.jl: Interactive Visualization and Exploration for PDE Simulations",
+      "creators": ["Jung, Pascal"],
+      "date": "2026-11-01",
+      "version": "0.5.3",
+      "type": "Software",
+      "doi": "10.5281/zenodo.22962032"
+    },
+    {
+      "title": "PDEStudioCore.jl: High-Performance Numerical Backend for PDE Simulations",
+      "creators": ["Jung, Pascal"],
+      "date": "2026-11-01",
+      "version": "0.4.3",
+      "type": "Software",
+      "doi": "10.5281/zenodo.22893504"
+    },
+    {
+      "title": "HyperCloudCore.jl: High-performance, physics-agnostic meshless solver backend for hyperbolic PDEs",
+      "creators": ["Jung, Pascal"],
+      "date": "2026-10-29",
+      "version": "0.7.9",
+      "type": "Software",
+      "doi": "10.5281/zenodo.23124663"
+    },
+    {
+      "title": "HyperCloud.jl: A comprehensive meshfree simulation framework for solving N-dimensional hyperbolic PDEs with high-order numerical accuracy.",
+      "creators": ["Jung, Pascal"],
+      "date": "2026-10-27",
+      "version": "0.5.1",
+      "type": "Software",
+      "doi": "10.5281/zenodo.23266176"
+    }
+  ]
+}

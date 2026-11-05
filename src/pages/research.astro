@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const allSoftware = await getCollection('software');
+const research = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
+const entries = await Promise.all(
+  research.map(async (entry) => ({
+    entry,
+    Content: (await render(entry)).Content,
+    software: entry.data.software.flatMap((link) => allSoftware.filter((item) => item.id === link.id)),
+  })),
+);
+---
+
+<Layout title="Research" description="Research areas of the Industrial Mathematics Group.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Research</h1>
+      <p>We work on partial differential equations, from modelling and analysis to numerical methods and the software that runs them.</p>
+    </div>
+    {entries.map(({ entry, Content, software }) => (
+      <section class="section research-entry" id={entry.id}>
+        <h2>{entry.data.title}</h2>
+        <div class="prose">
+          <Content />
+          {software.length > 0 && (
+            <p class="related">
+              Related code: {software.map((item) => <a href={item.data.repo}>{item.data.name}</a>)}
+            </p>
+          )}
+        </div>
+      </section>
+    ))}
+  </div>
+</Layout>

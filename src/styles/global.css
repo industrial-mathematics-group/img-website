@@ -1,0 +1,470 @@
+/* Colours come from the logo kit: github.com/industrial-mathematics-group/.github/tree/main/logos */
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --surface: #f2f5fb;
+  --ink: #1b2238;
+  --muted: #5a6378;
+  --rule: #d5dbe8;
+  --link: #3454c4;
+  --red: #cb3c33;
+  --blue: #4063d8;
+  --green: #389826;
+  --red-rgb: 203, 60, 51;
+  --blue-rgb: 64, 99, 216;
+  --display: 'Space Grotesk Variable', 'Space Grotesk', system-ui, sans-serif;
+  --text: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --width: 74rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151f;
+    --surface: #1d2233;
+    --ink: #e6eaf4;
+    --muted: #9aa3b8;
+    --rule: #333a50;
+    --link: #93a9f5;
+    --red-rgb: 232, 93, 84;
+    --blue-rgb: 120, 148, 240;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.15em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+
+code {
+  font-size: 0.9em;
+}
+
+.wrap {
+  max-width: var(--width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: -100vw;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+}
+
+/* Header and footer */
+.site-header {
+  font-family: var(--display);
+}
+
+.site-header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-block: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--ink);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.brand img {
+  display: block;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding-block: 0.3rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current='page'] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
+.site-footer {
+  margin-top: 5rem;
+  padding-block: 2.5rem;
+  background: var(--surface);
+  font-family: var(--display);
+  font-size: 0.95rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem 3rem;
+}
+
+.site-footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer li {
+  padding-block: 0.15rem;
+}
+
+.fineprint {
+  margin-top: 2rem !important;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* Front page */
+.hero-text {
+  padding-block: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.hero-text h1 {
+  max-width: 17ch;
+  font-size: clamp(2.6rem, 7vw, 5.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+.hero-text p {
+  max-width: 38rem;
+  margin: 1.25rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.traffic {
+  background: var(--surface);
+}
+
+.traffic canvas {
+  display: block;
+  width: 100%;
+  height: clamp(16rem, 34vw, 24rem);
+  cursor: crosshair;
+  touch-action: manipulation;
+}
+
+.traffic canvas[hidden] {
+  display: none;
+}
+
+.traffic-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem 3rem;
+  align-items: start;
+  padding-block: 1.25rem 1.75rem;
+}
+
+.traffic-panel p {
+  max-width: 40rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.traffic-panel .katex {
+  white-space: nowrap;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  font-family: var(--display);
+  font-size: 0.95rem;
+}
+
+.controls[hidden] {
+  display: none;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.controls input {
+  width: 9rem;
+  accent-color: var(--blue);
+}
+
+.controls output {
+  display: inline-block;
+  min-width: 2.6em;
+  font-variant-numeric: tabular-nums;
+}
+
+button {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+/* Sections: heading on the left, content on the right */
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.6fr);
+  gap: 1.25rem clamp(2rem, 5vw, 4.5rem);
+  margin-top: clamp(3.5rem, 8vw, 6rem);
+}
+
+.section > :last-child > :last-child {
+  margin-bottom: 0;
+}
+
+.prose {
+  max-width: 44rem;
+}
+
+.prose h2 {
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-size: 1.5rem;
+}
+
+.prose .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.25rem;
+}
+
+.page-head {
+  max-width: 48rem;
+  padding-block: clamp(2rem, 5vw, 3.5rem) 0.5rem;
+}
+
+.page-head p {
+  margin: 1rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.research-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 2rem 3rem;
+}
+
+.research-list h3 {
+  margin-bottom: 0.4rem;
+}
+
+.research-list p {
+  margin: 0;
+}
+
+.research-entry + .research-entry {
+  margin-top: 3.5rem;
+}
+
+.related {
+  font-family: var(--display);
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.related a {
+  margin-right: 0.75rem;
+}
+
+/* The software stack: applications sit on their engines */
+.stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.stack h3 {
+  margin-bottom: 0.75rem;
+}
+
+.stack > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.layer.application {
+  flex: 1;
+}
+
+.stack-intro {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.layer {
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+}
+
+.layer + .layer {
+  margin-top: 3px;
+}
+
+.layer.engine {
+  border-bottom: 4px solid var(--stack-color);
+}
+
+.stack-solve {
+  --stack-color: var(--blue);
+}
+
+.stack-explore {
+  --stack-color: var(--red);
+}
+
+.package-name {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.layer p,
+.package-row p {
+  margin: 0.3rem 0 0.5rem;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--display);
+  font-size: 0.925rem;
+}
+
+.package-row + .package-row {
+  margin-top: 1.75rem;
+}
+
+/* Publications and people */
+.entry-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry-list > li + li {
+  margin-top: 1.5rem;
+}
+
+.entry-title {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.entry-meta {
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+@media (max-width: 52rem) {
+  .section,
+  .traffic-panel,
+  .stack {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

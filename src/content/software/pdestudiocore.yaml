@@ -1,0 +1,8 @@
+name: PDEStudioCore.jl
+summary: Headless engine for parameter sweeps, hash-based result caching and error statistics.
+group: explore
+layer: engine
+language: Julia
+repo: https://github.com/industrial-mathematics-group/PDEStudioCore.jl
+docs: https://industrial-mathematics-group.github.io/PDEStudioCore.jl/stable/
+doi: 10.5281/zenodo.22893504

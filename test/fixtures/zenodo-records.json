@@ -1,0 +1,18 @@
+{
+  "hits": {
+    "hits": [
+      {
+        "id": 1,
+        "doi": "10.5281/zenodo.1",
+        "metadata": {
+          "title": "Example.jl",
+          "publication_date": "2026-10-01",
+          "version": "1.2.3",
+          "resource_type": { "title": "Software", "type": "software" },
+          "creators": [{ "name": "Doe, Jane" }]
+        }
+      }
+    ],
+    "total": 1
+  }
+}

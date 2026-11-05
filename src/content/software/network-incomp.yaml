@@ -1,0 +1,6 @@
+name: network-incomp
+summary: Solvers for a BGK model on networks in the diffusive scaling, and for the macroscopic limit equations on the same networks.
+group: paper-code
+language: MATLAB
+repo: https://github.com/industrial-mathematics-group/network-incomp
+order: 3
