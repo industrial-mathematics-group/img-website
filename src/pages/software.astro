@@ -37,7 +37,7 @@ const sections = [
             <div class="package-row">
               <div class="package-name">{entry.data.name}</div>
               <p>{entry.data.summary} Written in {entry.data.language}.</p>
-              <PackageLinks name={entry.data.name} repo={entry.data.repo} docs={entry.data.docs} doi={entry.data.doi} demo={entry.data.demo} />
+              <PackageLinks name={entry.data.name} repo={entry.data.repo} docs={entry.data.docs} doi={entry.data.doi} demo={entry.data.demo} explore={entry.data.explore} />
             </div>
           ))}
         </div>

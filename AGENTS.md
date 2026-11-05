@@ -27,11 +27,15 @@ The Node.js version is set in `.nvmrc`, and all workflows read it from there. To
 | Colours, type and layout | `src/styles/global.css` |
 | Allowed fields for all content | `src/content.config.ts` |
 | Front-page demo | `public/js/traffic.js` (drawing and controls) and `public/js/kinetic-traffic.js` (the model), explained in `src/content/news/traffic-demo.md` |
-| PDEStudio in the browser | `src/pages/software/pdestudio.astro`, `public/js/pdestudio/` (panel rules in `logic.js`), data in `public/pdestudio/` |
+| The Explore section | `src/pages/explore/` (overview in `index.astro`); a package links to its page with `demo` ("Try it") or `explore` in its software entry |
+| PDEStudio in the browser | `src/pages/explore/pdestudio.astro`, `public/js/pdestudio/` (panel rules in `logic.js`), data in `public/pdestudio/` |
+| HyperCloud results | `src/pages/explore/hypercloud.astro`, images in `public/hypercloud/` |
 
 `src/data/zenodo.json` is written by `scripts/sync-zenodo.mjs` during deployment. Don't edit it by hand.
 
 `public/pdestudio/*.json` is written by `tools/pdestudio-demo/export.jl` from the built-in examples of PDEStudioCore (the version pinned in its `Project.toml`). Don't edit it by hand; to update it, raise that version and run `julia --project=tools/pdestudio-demo tools/pdestudio-demo/export.jl` (instantiate the environment first). Keep `public/js/pdestudio/data.js` in step with the format.
+
+`public/hypercloud/*.webp` are the figures of the HyperCloud manuscript (`meshfree-solver-paper`), converted from the PDEStudio exports with `uv run tools/hypercloud-figures/convert.py <folder of the exports>`. The captions on the page follow the manuscript; change them together with it.
 
 ## Rules for content
 

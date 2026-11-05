@@ -6,7 +6,7 @@ import * as L from '../public/js/pdestudio/logic.js';
 
 const dataDir = new URL('../public/pdestudio/', import.meta.url);
 const load = (name) => new Example(JSON.parse(readFileSync(new URL(`${name}.json`, dataDir), 'utf8')));
-const page = readFileSync(new URL('../src/pages/software/pdestudio.astro', import.meta.url), 'utf8');
+const page = readFileSync(new URL('../src/pages/explore/pdestudio.astro', import.meta.url), 'utf8');
 const pageExamples = [...page.matchAll(/name: '(test_\w+)'/g)].map((m) => m[1]);
 
 test('every example of the demo page has its data, with a run per method and swept value', () => {

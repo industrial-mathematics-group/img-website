@@ -17,6 +17,7 @@ export const url = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, 
 export const navigation = [
   { href: '/research/', label: 'Research' },
   { href: '/software/', label: 'Software' },
+  { href: '/explore/', label: 'Explore' },
   { href: '/publications/', label: 'Publications' },
   { href: '/team/', label: 'Team' },
   { href: '/news/', label: 'News' },

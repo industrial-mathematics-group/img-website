@@ -6,3 +6,4 @@ language: Julia
 repo: https://github.com/industrial-mathematics-group/HyperCloudCore.jl
 docs: https://industrial-mathematics-group.github.io/HyperCloudCore.jl/stable/
 doi: 10.5281/zenodo.23124663
+explore: /explore/hypercloud/
