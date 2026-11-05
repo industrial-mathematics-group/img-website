@@ -32,9 +32,18 @@ jobs:
         run: node scripts/check-launch.mjs
       - name: Update Zenodo records
         run: node scripts/sync-zenodo.mjs
+      # The site is served at the root of the custom domain, or under /<repository>/ on
+      # github.io while none is set. The build reads the address from PAGES_URL.
+      - name: Read the GitHub Pages address
+        id: pages
+        uses: actions/configure-pages@v6
+      - name: Build for that address
+        run: echo "PAGES_URL=${{ steps.pages.outputs.base_url }}" >> "$GITHUB_ENV"
       - uses: withastro/action@v6
         with:
           node-version: ${{ steps.node.outputs.version }}
+      - name: Check the internal links of the deployed build
+        run: node scripts/check-links.mjs
 
   deploy:
     needs: build

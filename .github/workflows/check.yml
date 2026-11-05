@@ -18,6 +18,12 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run test:scripts
+      # Until a custom domain is set, GitHub Pages serves the site under /<repository>/,
+      # so every internal link must work under a base path too.
+      - name: Check the links under a base path
+        env:
+          PAGES_URL: https://example.github.io/img-website
+        run: npx astro build && node scripts/check-links.mjs
       - run: npm run check
       - uses: actions/upload-artifact@v4
         with:

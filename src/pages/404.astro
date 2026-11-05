@@ -1,12 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { url } from '../data/site';
 ---
 
 <Layout title="Page not found" noindex>
   <div class="wrap">
     <div class="page-head">
       <h1>Page not found</h1>
-      <p>This address doesn't match a page on our site. Go to the <a href="/">home page</a> or check <a href="/software/">our software</a>.</p>
+      <p>This address doesn't match a page on our site. Go to the <a href={url('/')}>home page</a> or check <a href={url('/software/')}>our software</a>.</p>
     </div>
   </div>
 </Layout>
