@@ -1,0 +1,127 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../data/site';
+
+// Figures of the manuscript, converted by tools/hypercloud-figures/convert.py into public/hypercloud/. Captions
+// follow the captions of the manuscript (meshfree-solver-paper, paper/main_light.tex).
+const paper = 'https://github.com/industrial-mathematics-group/meshfree-solver-paper';
+const figure = (name: string, width: number, height: number, alt: string, caption: string) => ({ name, width, height, alt, caption });
+
+const shocks = [
+  {
+    title: 'A two-dimensional Riemann problem',
+    text: 'Four constant states in the quadrants of the unit square, with every pair of adjacent quadrants connected by a single shock (Configuration 3 of Lax and Liu). Near the centre the shocks interact, and along the diagonal a mushroom-shaped jet with two roll-ups forms.',
+    figures: [
+      figure('riemann2d', 1400, 1711, 'Density of the two-dimensional Riemann problem for six schemes, as colour maps.', 'Density at t = 0.3 on 800 × 800 particles perturbed by 0.2h, with a common colour scale, for RK2MUSCL1, RK2MUSCL2 with the VK limiter, EPD2 and EPD1, RK3MUSCL3(EPD1,MLS3) and RK4SSPMUSCL4(EPD1,MLS4).'),
+      figure('riemann2d-zoom', 1400, 1711, 'Contour lines of the density near the centre of the Riemann problem for six schemes.', 'Detail [0.225, 0.5] × [0.21, 0.52] of the figure above, with 100 contour levels.'),
+    ],
+  },
+  {
+    title: 'Double Mach reflection',
+    text: 'The problem of Woodward and Colella: a Mach 10 shock hits a 30° wedge. The resolution of the slip line and of the roll-up of the wall jet is a sensitive measure of numerical dissipation.',
+    figures: [
+      figure('dmr', 1400, 2071, 'Density of the double Mach reflection for four schemes, as colour maps.', 'Density at t = 0.2 on 1440 × 450 particles perturbed by 0.2h for RK2MUSCL2(VK), RK3MUSCL3(EPD1,MLS3), RK3MUSCL3(EPD2,MLS3) and RK4SSPMUSCL4(EPD1,MLS4), with a common colour scale.'),
+      figure('dmr-zoom', 1400, 1152, 'Contour lines of the density in the region of the roll-up for four schemes.', 'Detail [2.13, 2.9] × [0, 0.47] of the figure above, with 100 contour levels.'),
+    ],
+  },
+  {
+    title: 'Mach 3 wind tunnel with a step',
+    text: 'A uniform Mach 3 flow enters a wind tunnel of length 3 and height 1 with a step of height 0.2, without any special treatment of the corner. All runs reproduce the bow shock in front of the step, the Mach stem at the upper wall with its triple point at y ≈ 0.73 and slip line, the expansion fan at the corner and the shock reflections at the step and the upper wall.',
+    figures: [
+      figure('mach3-step', 1400, 2089, 'Density in the wind tunnel with a step for four schemes, as colour maps; the step is grey.', 'Density at t = 4 on 900 × 300 particles perturbed by 0.2h for RK3MUSCL3 and RK4SSPMUSCL4 with EPD1 and EPD2, with a common colour scale; the step is shown in grey.'),
+    ],
+  },
+];
+---
+
+<Layout title="HyperCloud results" description="Results of the meshfree MUSCL schemes of HyperCloud: convergence, conservation and two-dimensional shock problems.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>HyperCloud results</h1>
+      <p>
+        <a href="https://github.com/industrial-mathematics-group/HyperCloud.jl">HyperCloud.jl</a> and <a href="https://github.com/industrial-mathematics-group/HyperCloudCore.jl">HyperCloudCore.jl</a> solve hyperbolic conservation laws on scattered point clouds with meshfree MUSCL schemes. The figures on this page are from our manuscript <a href={paper}>High-order meshfree MUSCL schemes with a posteriori order detection for hyperbolic systems on scattered point clouds</a> by Pascal Jung, Klaas Willems and Axel Klar.
+      </p>
+    </div>
+
+    <section class="section">
+      <h2>The method</h2>
+      <div class="prose">
+        <p>Each particle fits a moving least-squares (MLS) polynomial to its neighbours. The fits of two neighbouring particles are evaluated at their midpoint, the jump between them is resolved by an approximate Riemann solver, and the resulting interface fluxes are differentiated by an MLS derivative operator whose weights sum to zero.</p>
+        <p>Discontinuities are treated by slope limiters or by MOOD (Multi-dimensional Optimal Order Detection): a candidate solution is computed with the highest order, checked, and recomputed with lower polynomial degrees only at the particles where it fails, within strong-stability-preserving Runge–Kutta methods.</p>
+        <p>The labels name the scheme: in RK3MUSCL3(EPD1,AR,MLS3), RK3 is the Runge–Kutta method, 3 the design order, EPD1 the stabilization (a MOOD interface rule, or VK for the Venkatakrishnan limiter), AR the aligned Rusanov flux and MLS3 the degree of the derivative operator.</p>
+        <p>All results were computed with HyperCloudCore 0.7.8 and plotted with <a href={url('/explore/pdestudio/')}>PDEStudio</a>. The two-dimensional problems ran in single precision on GPUs of the Elwetritsch cluster, on lattices whose particles are moved randomly by up to 0.2 spacings.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Shock problems in two dimensions</h2>
+      <div class="prose">
+        <p>The Euler equations with γ = 1.4 on three standard problems. All 57 runs of the manuscript reach the final time with positive density and pressure, and with the full derivative degree the third- and fourth-order schemes resolve slip lines and roll-ups markedly better than the second-order scheme.</p>
+      </div>
+    </section>
+    {shocks.map((problem) => (
+      <section class="section gallery">
+        <h3>{problem.title}</h3>
+        <div>
+          <p class="prose">{problem.text}</p>
+          {problem.figures.map((f) => (
+            <figure class="figure">
+              <a href={url(`/hypercloud/${f.name}-large.webp`)}>
+                <img src={url(`/hypercloud/${f.name}.webp`)} width={f.width} height={f.height} alt={f.alt} loading="lazy" decoding="async" />
+              </a>
+              <figcaption>{f.caption} <a href={url(`/hypercloud/${f.name}-large.webp`)}>Full size</a></figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))}
+
+    <section class="section gallery">
+      <h2>The Sod shock tube</h2>
+      <div>
+        <p class="prose">The shock tube of Sod in one dimension, with a rarefaction, a contact discontinuity and a shock, compared with the exact Riemann solution.</p>
+        <figure class="figure">
+          <a href={url('/hypercloud/sod-large.webp')}>
+            <img src={url('/hypercloud/sod.webp')} width="1400" height="453" alt="Density, momentum and energy of the Sod shock tube for four schemes and the exact solution." loading="lazy" decoding="async" />
+          </a>
+          <figcaption>Sod shock tube at t = 0.2 on 200 particles perturbed by 0.2h: density, momentum and energy of RK2MUSCL1, RK2MUSCL2(VK,MLS2), RK4SSPMUSCL4(EPD1,MLS4) and RK4SSPMUSCL4(EPD2,MLS4), and the exact solution. <a href={url('/hypercloud/sod-large.webp')}>Full size</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section gallery">
+      <h2>Convergence</h2>
+      <div>
+        <p class="prose">Without limiting, the schemes attain their design orders two to five for smooth solutions, on lattices and on randomly perturbed clouds, provided the support radius R is large enough for the fits. The radius mainly changes the error constant: the small radius R = 2.5h of the shock computations gives smaller errors.</p>
+        <div class="figure-pair">
+          <figure class="figure">
+            <a href={url('/hypercloud/convergence-advection-large.webp')}>
+              <img src={url('/hypercloud/convergence-advection.webp')} width="1400" height="1136" alt="Relative L2 errors over the grid resolution for linear advection, four schemes." loading="lazy" decoding="async" />
+            </a>
+            <figcaption>Linear advection, t = 1.</figcaption>
+          </figure>
+          <figure class="figure">
+            <a href={url('/hypercloud/convergence-burgers-large.webp')}>
+              <img src={url('/hypercloud/convergence-burgers.webp')} width="1400" height="1136" alt="Relative L2 errors over the grid resolution for the Burgers equation, four schemes." loading="lazy" decoding="async" />
+            </a>
+            <figcaption>Burgers equation, t = 0.5.</figcaption>
+          </figure>
+        </div>
+        <p class="figure-note">Relative discrete L2 errors for a Gaussian pulse in two dimensions on N × N particles in [−5, 5]² perturbed by 0.2h (grid resolution N, h = 10/N), without limiter or MOOD, for RK2MUSCL2 and RK4SSPMUSCL4 with the support radii R = 2.5h and R = 5.5h; dashed lines: slopes −2 and −4.</p>
+      </div>
+    </section>
+
+    <section class="section gallery">
+      <h2>Conservation</h2>
+      <div>
+        <p class="prose">Without the faces of a mesh, discrete conservation is not automatic: the conservation error of the scheme is the lack of antisymmetry of the derivative weights. With a uniform derivative degree it decreases under refinement even at moving shocks, while the mixed degrees of the coupled mode (MLS0) give defects of several percent that do not decrease.</p>
+        <figure class="figure figure-narrow">
+          <a href={url('/hypercloud/mass-defect-epd2-large.webp')}>
+            <img src={url('/hypercloud/mass-defect-epd2.webp')} width="1400" height="1173" alt="Mass defect over the grid resolution for a Burgers shock, four variants of the fourth-order scheme." loading="lazy" decoding="async" />
+          </a>
+          <figcaption>Conservation defect |δm| for the one-dimensional Burgers shock, perturbation 0.4h, for RK4SSPMUSCL4 without MOOD (MLS4) and with MOOD (EPD2) in the coupled mode (MLS0) and with the fixed derivative degrees 2 (MLS2) and 4 (MLS4). <a href={url('/hypercloud/mass-defect-epd2-large.webp')}>Full size</a></figcaption>
+        </figure>
+      </div>
+    </section>
+  </div>
+</Layout>

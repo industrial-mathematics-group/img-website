@@ -468,6 +468,79 @@ button:hover {
   font-size: 1rem;
 }
 
+/* Explore: package overviews and result galleries */
+.explore-list {
+  display: grid;
+  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 2rem;
+}
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+.explore-card img {
+  display: block;
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+  object-position: top;
+}
+
+.explore-card div {
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.explore-card h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.explore-card p {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.gallery h3 {
+  font-size: 1.35rem;
+}
+
+.gallery .prose {
+  margin-top: 0;
+}
+
+.figure {
+  margin: 1.5rem 0 0;
+}
+
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure figcaption,
+.figure-note {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.figure-narrow {
+  max-width: 36rem;
+}
+
+.figure-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
 /* PDEStudio in the browser: the control panel of the studio and its plots */
 .studio-app {
   margin-top: 1.5rem;
