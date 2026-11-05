@@ -1,6 +1,6 @@
 title: High-order meshfree MUSCL schemes with a posteriori order detection for hyperbolic systems on scattered point clouds
 authors: [Pascal Jung, Klaas Willems, Axel Klar]
 year: 2026
-status: manuscript
-url: https://github.com/industrial-mathematics-group/meshfree-solver-paper
+status: preprint
+url: https://zenodo.org/records/23807966
 code: https://github.com/industrial-mathematics-group/meshfree-solver-paper
