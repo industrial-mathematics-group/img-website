@@ -6,14 +6,18 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Call the API
+      - uses: actions/checkout@v4
+      - name: Install Claude Code
+        run: |
+          curl -fsSL https://claude.ai/install.sh | bash -s 2.1.318
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - name: Show repo Claude config
+        run: ls -la .claude .mcp.json CLAUDE.md 2>&1 || true
+      - name: Run Claude Code
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          echo "Key length: ${#ANTHROPIC_API_KEY}"
-          curl -sS https://api.anthropic.com/v1/messages \
-            -H "x-api-key: $ANTHROPIC_API_KEY" \
-            -H "anthropic-version: 2023-06-01" \
-            -H "content-type: application/json" \
-            -d '{"model":"claude-sonnet-5-5","max_tokens":10,"messages":[{"role":"user","content":"hi"}]}' \
-            -w '\nHTTP status: %{http_code}\n'
+          claude -p "Reply with OK" \
+            --model claude-sonnet-5-5 \
+            --max-turns 1 \
+            --output-format json
