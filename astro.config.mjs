@@ -3,10 +3,32 @@ import { unified } from '@astrojs/markdown-remark';
 import sitemap from '@astrojs/sitemap';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { basePath, withBase } from './scripts/base-path.mjs';
+
+// Must match public/CNAME. scripts/check-launch.mjs blocks deployment if they differ.
+const domain = 'https://industrial-mathematics.org';
+
+// Where GitHub Pages serves the site; see scripts/base-path.mjs.
+const site = process.env.PAGES_URL ? new URL(process.env.PAGES_URL).origin : domain;
+const base = basePath();
+
+// Adds the base path to root-relative links and images in Markdown, like [our software](/software/).
+function rehypeBasePath() {
+  const visit = (node) => {
+    for (const key of ['href', 'src']) {
+      const value = node.properties?.[key];
+      if (typeof value === 'string' && value.startsWith('/') && !value.startsWith('//')) {
+        node.properties[key] = withBase(value, base);
+      }
+    }
+    node.children?.forEach(visit);
+  };
+  return visit;
+}
 
 export default defineConfig({
-  // Must match public/CNAME. scripts/check-launch.mjs blocks deployment if they differ.
-  site: 'https://industrial-mathematics.org',
+  site,
+  base,
   output: 'static',
   // Astro 7 defaults to 'jsx', which can drop spaces between inline elements.
   compressHTML: true,
@@ -14,7 +36,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex],
+      rehypePlugins: [rehypeKatex, rehypeBasePath],
     }),
   },
 });

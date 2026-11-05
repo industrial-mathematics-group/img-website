@@ -4,7 +4,7 @@ The source of the group's website, built with [Astro](https://astro.build) and h
 
 ## First-time setup
 
-1. Create a public repository named `industrial-mathematics-group.github.io` in the organisation. With this name, the site is served from the root of the domain.
+1. Create a public repository named `industrial-mathematics-group.github.io` in the organisation. With this name, the site is served from the root of the domain. Under any other name, such as `img-website`, it is served under `/img-website/` until a custom domain is set. The deploy workflow reads the address from GitHub Pages and builds the site for it, so both work.
 2. Install Node.js 26. The version is set in `.nvmrc`, so with nvm you can run `nvm install` in this folder.
 3. Install the dependencies. This also creates `package-lock.json`, which the workflows need:
 
@@ -40,7 +40,7 @@ The deploy workflow fails on purpose until these are done:
 1. Complete the `[TODO-LAUNCH: ...]` notes in `src/content/legal/`.
 2. Configure DNS for `industrial-mathematics.org` as described in [GitHub's custom domain guide](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site), and verify the domain for the organisation.
 
-A custom domain on this repository also moves the docs of the Julia packages under it, for example to `https://industrial-mathematics.org/HyperCloud.jl/stable/`. After switching, check that the old `github.io` links redirect properly.
+Once the custom domain is set in **Settings > Pages**, the next deployment builds the site for the root of that domain. If this repository is the organisation site (`industrial-mathematics-group.github.io`), the custom domain also moves the docs of the Julia packages under it, for example to `https://industrial-mathematics.org/HyperCloud.jl/stable/`. After switching, check that the old `github.io` links redirect properly. A custom domain on a project repository such as `img-website` doesn't move the other repositories' sites.
 
 ## Maintenance
 

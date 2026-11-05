@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import SoftwareStack from '../components/SoftwareStack.astro';
 import TrafficDemo from '../components/TrafficDemo.astro';
-import { site } from '../data/site';
+import { site, url } from '../data/site';
 
 const research = (await getCollection('research')).sort((a, b) => a.data.order - b.data.order);
 ---
@@ -23,7 +23,7 @@ const research = (await getCollection('research')).sort((a, b) => a.data.order -
         <div class="research-list">
           {research.map((entry) => (
             <div>
-              <h3><a href={`/research/#${entry.id}`}>{entry.data.title}</a></h3>
+              <h3><a href={url(`/research/#${entry.id}`)}>{entry.data.title}</a></h3>
               <p>{entry.data.summary}</p>
             </div>
           ))}
@@ -35,7 +35,7 @@ const research = (await getCollection('research')).sort((a, b) => a.data.order -
       <h2>Software</h2>
       <div>
         <SoftwareStack />
-        <p style="margin-top:1.25rem"><a href="/software/">All software, including code for our papers</a></p>
+        <p style="margin-top:1.25rem"><a href={url('/software/')}>All software, including code for our papers</a></p>
       </div>
     </section>
 

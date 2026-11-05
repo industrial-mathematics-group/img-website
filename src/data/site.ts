@@ -11,6 +11,9 @@ export const site = {
   address: ['Gottlieb-Daimler-Straße, Building 48', '67663 Kaiserslautern', 'Germany'],
 };
 
+// An internal path like /software/, with the base path the site is served under (see astro.config.mjs).
+export const url = (path: string) => `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}`;
+
 export const navigation = [
   { href: '/research/', label: 'Research' },
   { href: '/software/', label: 'Software' },

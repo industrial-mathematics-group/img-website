@@ -1,5 +1,6 @@
 ---
 import katex from 'katex';
+import { url } from '../data/site';
 
 const equation = katex.renderToString(
   String.raw`\partial_t f_i^c + v_i\,\partial_x f_i^c = J_i^c(f, \partial_x f) + \tfrac{1}{\epsilon}\big(f_i^{e,c} - f_i^c\big)`,
@@ -15,7 +16,7 @@ const equation = katex.renderToString(
   ></canvas>
   <div class="wrap traffic-panel">
     <p>
-      This demo runs a kinetic model for two classes of vehicles with different top speeds. Vehicles brake when the traffic ahead gets denser, and return to the preferred speed of their class within a time ε: <Fragment set:html={equation} />. At medium density, small disturbances grow into stop-and-go waves. Click the road to make drivers brake. <a href="/news/traffic-demo/">How this works</a>
+      This demo runs a kinetic model for two classes of vehicles with different top speeds. Vehicles brake when the traffic ahead gets denser, and return to the preferred speed of their class within a time ε: <Fragment set:html={equation} />. At medium density, small disturbances grow into stop-and-go waves. Click the road to make drivers brake. <a href={url('/news/traffic-demo/')}>How this works</a>
     </p>
     <div class="controls" data-controls hidden>
       <label>
@@ -28,4 +29,4 @@ const equation = katex.renderToString(
     </div>
   </div>
 </section>
-<script is:inline type="module" src="/js/traffic.js"></script>
+<script is:inline type="module" src={url('/js/traffic.js')}></script>
