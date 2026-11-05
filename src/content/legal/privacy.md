@@ -2,8 +2,6 @@
 title: Privacy
 ---
 
-[TODO-LAUNCH: Have this draft reviewed against RPTU's rules, and add the name and contact details of the controller and the data protection officer.]
-
 This site is a set of static pages. It sets no cookies, uses no analytics or tracking, and loads its fonts from this site rather than from a third party.
 
 ## Hosting
