@@ -6,19 +6,16 @@ The source of the group's website, built with [Astro](https://astro.build) and h
 
 1. Create a public repository named `industrial-mathematics-group.github.io` in the organisation. With this name, the site is served from the root of the domain. Under any other name, such as `img-website`, it is served under `/img-website/` until a custom domain is set. The deploy workflow reads the address from GitHub Pages and builds the site for it, so both work.
 2. Install Node.js 26. The version is set in `.nvmrc`, so with nvm you can run `nvm install` in this folder.
-3. Install the dependencies. This also creates `package-lock.json`, which the workflows need:
+3. Install the dependencies from `package-lock.json` and check the site:
 
    ```bash
-   npm install astro@latest @astrojs/markdown-remark@latest @astrojs/sitemap@latest \
-     @fontsource-variable/source-serif-4@latest @fontsource-variable/space-grotesk@latest \
-     katex@latest rehype-katex@latest remark-math@latest
-   npm install -D @astrojs/check@latest @types/katex@latest typescript@latest
+   npm ci
    npm run test:scripts
    npm run check
    npm run dev
    ```
 
-4. Commit everything, including `package-lock.json`, and push.
+4. Push the repository to the organisation.
 5. In the repository, go to **Settings > Pages** and set the source to **GitHub Actions**.
 6. Follow [SETUP.md in the org's `.github` repository](https://github.com/industrial-mathematics-group/.github/blob/main/SETUP.md) for the merge settings and for protecting `main`.
 
@@ -46,7 +43,7 @@ Once the custom domain is set in **Settings > Pages**, the next deployment build
 
 - **Zenodo records:** updated on each deployment and every Monday. If Zenodo is unavailable, the site keeps the last records.
 - **Scheduled runs:** GitHub turns off scheduled workflows after 60 days without repository activity. If that happens, re-enable the workflow in the Actions tab.
-- **Dependencies:** Dependabot opens one grouped PR a month for npm and one for GitHub Actions.
+- **Dependencies:** `package.json` allows minor and patch updates (`^`), and `package-lock.json` fixes the exact versions. Dependabot opens one grouped PR a month for npm, which raises both, and one for GitHub Actions. Update by hand with `npm update` or `npm install <package>@latest`, and commit the lockfile.
 
 ## Licences
 
