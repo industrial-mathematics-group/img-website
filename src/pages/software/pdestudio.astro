@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../data/site';
+
+// The built-in examples of PDEStudioCore, as described in the PDEStudio README. Their data is exported by
+// tools/pdestudio-demo/export.jl into public/pdestudio/.
+const examples = [
+  { name: 'test_advection_1d', equation: 'Linear advection: upwind, Lax–Friedrichs, Lax–Wendroff and the exact solution, swept over the CFL number' },
+  { name: 'test_burgers_1d', equation: 'Inviscid Burgers: a shock, conservative vs non-conservative schemes, swept over the grid size' },
+  { name: 'test_heat_1d', equation: 'Heat equation: explicit (unstable at r = 0.6), implicit, Crank–Nicolson and the exact solution' },
+  { name: 'test_heat_2d', equation: 'Heat equation in 2D: explicit vs ADI and the exact solution' },
+  { name: 'test_poisson_2d', equation: 'Poisson equation: Jacobi, Gauss–Seidel, SOR and the exact solution; time = iterations' },
+  { name: 'test_particles_2d', equation: 'Particles in a rotating flow: explicit Euler, RK2, RK4, swept over the time step' },
+];
+---
+
+<Layout title="Try PDEStudio" description="PDEStudio's control panel in the browser, with the built-in examples of PDEStudioCore.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Try PDEStudio</h1>
+      <p>
+        <a href="https://github.com/industrial-mathematics-group/PDEStudio.jl">PDEStudio.jl</a> is our Makie front end for exploring PDE simulations computed with <a href="https://github.com/industrial-mathematics-group/PDEStudioCore.jl">PDEStudioCore.jl</a>. This page rebuilds its control panel in the browser and shows the built-in examples of PDEStudioCore, computed beforehand.
+      </p>
+    </div>
+  </div>
+
+  <section class="studio-app" data-studio-app hidden aria-label="PDEStudio in the browser">
+    <div class="studio-head">
+      <label>
+        Example
+        <select data-studio-example>
+          {examples.map((ex) => <option value={ex.name}>{ex.name}()</option>)}
+        </select>
+      </label>
+      <p>In Julia: <code data-studio-launch>@launch test_advection_1d()</code></p>
+    </div>
+    <div class="studio" data-studio={url('/pdestudio/')}></div>
+  </section>
+  <noscript>
+    <div class="wrap"><p class="studio-noscript">The interactive studio needs JavaScript. The rest of this page describes it and how to run PDEStudio yourself.</p></div>
+  </noscript>
+
+  <div class="wrap">
+    <section class="section">
+      <h2>What you can do here</h2>
+      <div class="prose">
+        <p>The panel works like the one in PDEStudio: the <strong>Plot</strong> tab sets the plot style, the comparison and the axes, <strong>Methods</strong> switches schemes on and off and orders them, the sliders pick the swept parameter and the time, and <strong>Play Anim</strong> animates the Anim Target. As in PDEStudio, layout changes wait for <strong>Apply Layout</strong>, plot options for <strong>Update Plot</strong> and method changes for <strong>Run Simulation</strong>; a highlighted button is out of sync.</p>
+        <p>Every run of each example was computed with PDEStudioCore, including the statistics of its <code>"hyperbolic"</code> preset (mass, norms, errors against the exact solution), which you can plot over time or over the swept parameter.</p>
+        <p>Some things need Julia: a new simulation after changing a parameter in <strong>Shared</strong> or a method, loading and saving files and presets, and the 3-D and surface styles and style pages, which Makie draws. The web version tells you when you reach one of them.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Run it yourself</h2>
+      <div class="prose">
+        <p>Install PDEStudio and a Makie backend, then launch an example. <code>@launch</code> runs the configuration and opens the studio with it:</p>
+        <pre><code>using Pkg
+Pkg.add(["PDEStudio", "GLMakie"])   # or WGLMakie for a browser
+
+using PDEStudio, GLMakie
+@launch test_advection_1d()</code></pre>
+        <p>The examples are functions of PDEStudioCore that return a <code>SimulationConfig</code>:</p>
+        <ul>
+          {examples.map((ex) => <li><code>{ex.name}()</code>: {ex.equation}.</li>)}
+        </ul>
+        <p>For your own solver, see the <a href="https://industrial-mathematics-group.github.io/PDEStudio.jl/stable/">PDEStudio documentation</a>.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How this page is made</h2>
+      <div class="prose">
+        <p>A Julia script runs the six examples with PDEStudioCore and exports every run: grid data resampled to at most 200 points in space and 101 times in 1D, at most 41 × 41 points and 26 times in 2D, stored with 16-bit precision; particles at their computed time steps. The panel and the plots are plain JavaScript with no Julia or Makie in the browser, so the plots look a little different from PDEStudio's.</p>
+      </div>
+    </section>
+  </div>
+  <script is:inline type="module" src={url('/js/pdestudio/main.js')}></script>
+</Layout>

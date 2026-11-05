@@ -1,15 +1,19 @@
 ---
+import { url } from '../data/site';
+
 interface Props {
   name: string;
   repo: string;
   docs?: string;
   doi?: string;
+  demo?: string;
 }
 
-const { name, repo, docs, doi } = Astro.props;
+const { name, repo, docs, doi, demo } = Astro.props;
 ---
 
 <ul class="links" aria-label={`Links for ${name}`}>
+  {demo && <li><a href={url(demo)}>Try it</a></li>}
   {docs && <li><a href={docs}>Docs</a></li>}
   <li><a href={repo}>Code</a></li>
   {doi && <li><a href={`https://doi.org/${doi}`}>DOI</a></li>}
