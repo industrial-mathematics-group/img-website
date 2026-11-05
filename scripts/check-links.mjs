@@ -1,7 +1,9 @@
 // Checks that every internal link and asset in the built site exists, including #anchors.
+// Root-relative links must start with the base path the site is built for (see base-path.mjs).
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { basePath } from './base-path.mjs';
 
 function htmlFiles(dir) {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -18,7 +20,7 @@ function resolveTarget(root, fromFile, pathname) {
   return candidates.find((path) => existsSync(path) && statSync(path).isFile());
 }
 
-export function checkLinks(root) {
+export function checkLinks(root, base = '/') {
   const problems = [];
   for (const file of htmlFiles(root)) {
     const html = readFileSync(file, 'utf8');
@@ -27,8 +29,14 @@ export function checkLinks(root) {
       const value = match[1] ?? match[2];
       if (!value || /^([a-z][a-z0-9+.-]*:|\/\/)/i.test(value)) continue;
       const [pathname, hash] = value.split('#');
-      const target = pathname ? resolveTarget(root, file, pathname) : file;
       const where = relative(root, file);
+      const inBase = base === '/' || pathname === base || pathname.startsWith(`${base}/`);
+      if (pathname.startsWith('/') && !inBase) {
+        problems.push(`${where}: outside the base path ${base}: ${value}`);
+        continue;
+      }
+      const local = pathname.startsWith('/') && base !== '/' ? pathname.slice(base.length) || '/' : pathname;
+      const target = local ? resolveTarget(root, file, local) : file;
       if (!target) {
         problems.push(`${where}: missing ${value}`);
       } else if (hash && target.endsWith('.html')) {
@@ -42,7 +50,7 @@ export function checkLinks(root) {
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = fileURLToPath(new URL('../dist', import.meta.url));
-  const problems = checkLinks(root);
+  const problems = checkLinks(root, basePath());
   if (problems.length > 0) {
     console.error(`Broken internal links:\n${problems.join('\n')}`);
     process.exit(1);

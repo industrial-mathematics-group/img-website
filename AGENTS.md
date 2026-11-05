@@ -43,6 +43,7 @@ The Node.js version is set in `.nvmrc`, and all workflows read it from there. To
 - Use only the colour and font variables in `global.css`. Colours come from the logo kit in the org's `.github` repository.
 - Keep the site static: no `output: 'server'`, adapters, analytics, cookies, or fonts and scripts from third-party hosts.
 - Astro 7 rejects unclosed tags, and needs valid nesting (no `<div>` inside `<p>`).
+- Until the custom domain is set, GitHub Pages serves the site under `/img-website/`. In `.astro` files, write internal links and files from `public/` with `url()` from `src/data/site.ts`, e.g. `href={url('/software/')}`. In Markdown, plain links like `/software/` are fine; the build adds the base path. `npm run check` doesn't catch a missing `url()`, but the check workflow does.
 - Every page must work without JavaScript. The demo is the only exception, and its text must still make sense without it.
 - The demo must stay pausable and must not start moving under `prefers-reduced-motion`.
 
@@ -59,4 +60,4 @@ When you run through the `@claude` workflow, you push a branch and post a link t
 `scripts/check-launch.mjs` stops deployment until the following are done. Don't weaken or remove this check to get a deployment through. The people responsible must supply the missing details.
 
 - No `[TODO-LAUNCH: ...]` markers remain in `src/content/legal/`.
-- `public/CNAME` contains the domain, and `site` in `astro.config.mjs` uses the same one.
+- `public/CNAME` contains the domain, and `domain` in `astro.config.mjs` uses the same one.

@@ -3,7 +3,7 @@ import '@fontsource-variable/space-grotesk';
 import '@fontsource-variable/source-serif-4';
 import 'katex/dist/katex.min.css';
 import '../styles/global.css';
-import { navigation, site } from '../data/site';
+import { navigation, site, url } from '../data/site';
 
 interface Props {
   title?: string;
@@ -14,7 +14,7 @@ interface Props {
 const { title, description = site.description, noindex = false } = Astro.props;
 const pageTitle = title ? `${title} | ${site.name}` : site.name;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/og-image.png', Astro.site);
+const ogImage = new URL(url('/og-image.png'), Astro.site);
 const currentPath = Astro.url.pathname;
 ---
 
@@ -32,18 +32,18 @@ const currentPath = Astro.url.pathname;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:image" content={ogImage.href} />
-    <link rel="icon" href="/favicon-32.png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href={url('/favicon-32.png')} sizes="32x32" />
+    <link rel="apple-touch-icon" href={url('/apple-touch-icon.png')} />
+    <link rel="sitemap" href={url('/sitemap-index.xml')} />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="/">
+        <a class="brand" href={url('/')}>
           <picture>
-            <source srcset="/logos/mark-dark.svg" media="(prefers-color-scheme: dark)" />
-            <img src="/logos/mark.svg" alt="" width="36" height="36" />
+            <source srcset={url('/logos/mark-dark.svg')} media="(prefers-color-scheme: dark)" />
+            <img src={url('/logos/mark.svg')} alt="" width="36" height="36" />
           </picture>
           <span>{site.name}</span>
         </a>
@@ -51,7 +51,7 @@ const currentPath = Astro.url.pathname;
           <ul>
             {navigation.map((item) => (
               <li>
-                <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
+                <a href={url(item.href)} aria-current={currentPath.startsWith(url(item.href)) ? 'page' : undefined}>{item.label}</a>
               </li>
             ))}
           </ul>
@@ -74,8 +74,8 @@ const currentPath = Astro.url.pathname;
             <li><a href={site.aiPolicy}>AI policy</a></li>
           </ul>
           <ul>
-            <li><a href="/imprint/">Imprint</a></li>
-            <li><a href="/privacy/">Privacy</a></li>
+            <li><a href={url('/imprint/')}>Imprint</a></li>
+            <li><a href={url('/privacy/')}>Privacy</a></li>
           </ul>
         </div>
         <p class="fineprint">Logos © Industrial Mathematics Group, licensed under CC BY 4.0.</p>
