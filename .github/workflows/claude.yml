@@ -1,0 +1,34 @@
+name: Claude
+
+# The @claude assistant: answers "@claude" in issues and PRs, and works on issues from the
+# "Ask Claude" forms. The job itself is the reusable workflow in industrial-mathematics-group/.github.
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  pull_request_review:
+    types: [submitted]
+  issues:
+    types: [opened]
+
+jobs:
+  claude:
+    # Start only when someone actually asks; everything else is skipped without a runner.
+    if: >-
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+      actions: read
+    uses: industrial-mathematics-group/.github/.github/workflows/claude.yml@main
+    # with:
+    #   node-version: "22"                        # the Astro website
+    #   model: claude-opus-5-5                    # a stronger model for this repository
+    #   model-name: Claude Opus 5.5 (Anthropic)   # keep in step with model
+    secrets: inherit
