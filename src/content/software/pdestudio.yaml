@@ -6,4 +6,4 @@ language: Julia
 repo: https://github.com/industrial-mathematics-group/PDEStudio.jl
 docs: https://industrial-mathematics-group.github.io/PDEStudio.jl/stable/
 doi: 10.5281/zenodo.22962032
-demo: /software/pdestudio/
+demo: /explore/pdestudio/

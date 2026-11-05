@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { url } from '../../data/site';
+
+const entries = [
+  {
+    title: 'PDEStudio',
+    href: '/explore/pdestudio/',
+    image: '/explore/pdestudio.webp',
+    text: 'Try the control panel of PDEStudio in your browser, on the built-in examples of PDEStudioCore: plot styles, comparisons, statistics and animations, without installing anything.',
+    link: 'Try PDEStudio',
+    packages: 'PDEStudio.jl and PDEStudioCore.jl',
+  },
+  {
+    title: 'HyperCloud',
+    href: '/explore/hypercloud/',
+    image: '/hypercloud/dmr.webp',
+    text: 'Results of the meshfree MUSCL schemes of HyperCloud from our manuscript: convergence, conservation, the Sod shock tube and two-dimensional shock problems up to the double Mach reflection.',
+    link: 'See the results',
+    packages: 'HyperCloud.jl and HyperCloudCore.jl',
+  },
+];
+---
+
+<Layout title="Explore" description="Try our software in the browser and see what it computes.">
+  <div class="wrap">
+    <div class="page-head">
+      <h1>Explore</h1>
+      <p>Try our software in the browser and see what it computes. The code of every package is on the <a href={url('/software/')}>software page</a>.</p>
+    </div>
+    <div class="explore-list">
+      {entries.map((entry) => (
+        <section class="explore-card">
+          <a href={url(entry.href)} tabindex="-1" aria-hidden="true">
+            <img src={url(entry.image)} alt="" loading="lazy" decoding="async" />
+          </a>
+          <div>
+            <h2><a href={url(entry.href)}>{entry.title}</a></h2>
+            <p>{entry.text}</p>
+            <p class="related">{entry.packages}</p>
+            <p><a href={url(entry.href)}>{entry.link}</a></p>
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Layout>

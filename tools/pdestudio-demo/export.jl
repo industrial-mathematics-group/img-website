@@ -1,5 +1,5 @@
 # Exports the built-in examples of PDEStudioCore as data for the PDEStudio demo page
-# (src/pages/software/pdestudio.astro). Run from the repository root:
+# (src/pages/explore/pdestudio.astro). Run from the repository root:
 #
 #     julia --project=tools/pdestudio-demo -e 'using Pkg; Pkg.instantiate()'
 #     julia --project=tools/pdestudio-demo tools/pdestudio-demo/export.jl

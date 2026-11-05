@@ -30,6 +30,11 @@ export default defineConfig({
   site,
   base,
   output: 'static',
+  // Moved pages; GitHub Pages serves these as pages that forward to the new address. Astro doesn't add the base
+  // path to the targets.
+  redirects: {
+    '/software/pdestudio': withBase('/explore/pdestudio/', base),
+  },
   // Astro 7 defaults to 'jsx', which can drop spaces between inline elements.
   compressHTML: true,
   integrations: [sitemap()],
