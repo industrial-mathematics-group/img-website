@@ -1,30 +1,31 @@
 ---
 import katex from 'katex';
 
-const equation = katex.renderToString(String.raw`\partial_t \rho + \partial_x\big(\rho(1-\rho)\big) = 0`, {
-  throwOnError: true,
-});
+const equation = katex.renderToString(
+  String.raw`\partial_t f_i^c + v_i\,\partial_x f_i^c = J_i^c(f, \partial_x f) + \tfrac{1}{\epsilon}\big(f_i^{e,c} - f_i^c\big)`,
+  { throwOnError: true },
+);
 ---
 
 <section class="traffic" data-traffic aria-label="Interactive traffic simulation">
   <canvas
     hidden
     role="img"
-    aria-label="Cars on a road below a curve of their local density. A queue forms behind a red light and dissolves when it turns green."
+    aria-label="The densities of two classes of vehicles on a ring road, with dots for the vehicles. At medium density, small disturbances grow into stop-and-go waves."
   ></canvas>
   <div class="wrap traffic-panel">
     <p>
-      In this traffic model, each car only reacts to the gap ahead. Add more cars and their steps merge into a smooth density that follows a conservation law, <Fragment set:html={equation} />. <a href="/news/traffic-demo/">How this works</a>
+      This demo runs a kinetic model for two classes of vehicles with different top speeds. Vehicles brake when the traffic ahead gets denser, and return to the preferred speed of their class within a time ε: <Fragment set:html={equation} />. At medium density, small disturbances grow into stop-and-go waves. Click the road to make drivers brake. <a href="/news/traffic-demo/">How this works</a>
     </p>
     <div class="controls" data-controls hidden>
       <label>
-        Cars
-        <input type="range" min="0" max="5" step="1" value="3" data-cars />
-        <output data-cars-output>200</output>
+        Density
+        <input type="range" min="0" max="5" step="1" value="3" data-density />
+        <output data-density-output>50 %</output>
       </label>
-      <button type="button" data-red>Turn light red</button>
+      <button type="button" data-brake>Make drivers brake</button>
       <button type="button" data-play>Pause</button>
     </div>
   </div>
 </section>
-<script is:inline src="/js/traffic.js" defer></script>
+<script is:inline type="module" src="/js/traffic.js"></script>
