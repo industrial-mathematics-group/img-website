@@ -1,0 +1,389 @@
+{
+  "updated": "2026-11-05T21:07:03.131Z",
+  "repositories": [
+    {
+      "repo": "HyperCloudCore.jl",
+      "url": "https://github.com/industrial-mathematics-group/HyperCloudCore.jl",
+      "files": {
+        "generation": {
+          "label": "AI generation (lines)",
+          "message": "G2 56% · G3 44%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 56
+            },
+            {
+              "level": "G3",
+              "percent": 44
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review (lines)",
+          "message": "H1 30% · H2 70%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "H1",
+              "percent": 30
+            },
+            {
+              "level": "H2",
+              "percent": 70
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review (lines)",
+          "message": "A1 100%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "HyperCloud.jl",
+      "url": "https://github.com/industrial-mathematics-group/HyperCloud.jl",
+      "files": {
+        "generation": {
+          "label": "AI generation (lines)",
+          "message": "G2 47% · G3 53%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 47
+            },
+            {
+              "level": "G3",
+              "percent": 53
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review (lines)",
+          "message": "H1 33% · H2 67%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "H1",
+              "percent": 33
+            },
+            {
+              "level": "H2",
+              "percent": 67
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review (lines)",
+          "message": "A1 100%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "PDEStudioCore.jl",
+      "url": "https://github.com/industrial-mathematics-group/PDEStudioCore.jl",
+      "files": {
+        "generation": {
+          "label": "AI generation (lines)",
+          "message": "G2 58% · G3 42%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 58
+            },
+            {
+              "level": "G3",
+              "percent": 42
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review (lines)",
+          "message": "H1 31% · H2 69%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "H1",
+              "percent": 31
+            },
+            {
+              "level": "H2",
+              "percent": 69
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review (lines)",
+          "message": "A1 100%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "PDEStudio.jl",
+      "url": "https://github.com/industrial-mathematics-group/PDEStudio.jl",
+      "files": {
+        "generation": {
+          "label": "AI generation (lines)",
+          "message": "G2 68% · G3 32%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 68
+            },
+            {
+              "level": "G3",
+              "percent": 32
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review (lines)",
+          "message": "H1 25% · H2 75%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "H1",
+              "percent": 25
+            },
+            {
+              "level": "H2",
+              "percent": 75
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review (lines)",
+          "message": "A1 100%",
+          "weight": "lines",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "aidecl",
+      "url": "https://github.com/industrial-mathematics-group/aidecl",
+      "files": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G0 6% · G3 94%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G0",
+              "percent": 6
+            },
+            {
+              "level": "G3",
+              "percent": 94
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H1 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H1",
+              "percent": 100
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A1 28% · A2 72%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 28
+            },
+            {
+              "level": "A2",
+              "percent": 72
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "meshfree-solver-paper",
+      "url": "https://github.com/industrial-mathematics-group/meshfree-solver-paper",
+      "files": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G0 20% · G2 3% · G3 77%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G0",
+              "percent": 20
+            },
+            {
+              "level": "G2",
+              "percent": 3
+            },
+            {
+              "level": "G3",
+              "percent": 77
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 74% · H1 3% · H2 23%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 74
+            },
+            {
+              "level": "H1",
+              "percent": 3
+            },
+            {
+              "level": "H2",
+              "percent": 23
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A0 15% · A1 18% · A2 67%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A0",
+              "percent": 15
+            },
+            {
+              "level": "A1",
+              "percent": 18
+            },
+            {
+              "level": "A2",
+              "percent": 67
+            }
+          ]
+        }
+      },
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G3 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G3",
+              "percent": 100
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 50% · H1 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 50
+            },
+            {
+              "level": "H1",
+              "percent": 50
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A1 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "img-website",
+      "url": "https://github.com/industrial-mathematics-group/img-website",
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G2 20% · G3 80%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 20
+            },
+            {
+              "level": "G3",
+              "percent": 80
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 80% · H2 20%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 80
+            },
+            {
+              "level": "H2",
+              "percent": 20
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A1 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
