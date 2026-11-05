@@ -8,7 +8,7 @@ A fully static Astro site, deployed to GitHub Pages. There is no server, databas
 npm ci                 # install from the lockfile
 npm run dev            # local preview at http://localhost:4321
 npm run check          # type check, build and internal link check; run before every PR
-npm run test:scripts   # tests for the scripts in scripts/ and the demo model
+npm run test:scripts   # tests for the scripts in scripts/ and the two demos
 ```
 
 The Node.js version is set in `.nvmrc`, and all workflows read it from there. To change it, edit that file and `engines` in `package.json`.
@@ -27,8 +27,11 @@ The Node.js version is set in `.nvmrc`, and all workflows read it from there. To
 | Colours, type and layout | `src/styles/global.css` |
 | Allowed fields for all content | `src/content.config.ts` |
 | Front-page demo | `public/js/traffic.js` (drawing and controls) and `public/js/kinetic-traffic.js` (the model), explained in `src/content/news/traffic-demo.md` |
+| PDEStudio in the browser | `src/pages/software/pdestudio.astro`, `public/js/pdestudio/` (panel rules in `logic.js`), data in `public/pdestudio/` |
 
 `src/data/zenodo.json` is written by `scripts/sync-zenodo.mjs` during deployment. Don't edit it by hand.
+
+`public/pdestudio/*.json` is written by `tools/pdestudio-demo/export.jl` from the built-in examples of PDEStudioCore (the version pinned in its `Project.toml`). Don't edit it by hand; to update it, raise that version and run `julia --project=tools/pdestudio-demo tools/pdestudio-demo/export.jl` (instantiate the environment first). Keep `public/js/pdestudio/data.js` in step with the format.
 
 ## Rules for content
 
@@ -44,7 +47,7 @@ The Node.js version is set in `.nvmrc`, and all workflows read it from there. To
 - Keep the site static: no `output: 'server'`, adapters, analytics, cookies, or fonts and scripts from third-party hosts.
 - Astro 7 rejects unclosed tags, and needs valid nesting (no `<div>` inside `<p>`).
 - Until the custom domain is set, GitHub Pages serves the site under `/img-website/`. In `.astro` files, write internal links and files from `public/` with `url()` from `src/data/site.ts`, e.g. `href={url('/software/')}`. In Markdown, plain links like `/software/` are fine; the build adds the base path. `npm run check` doesn't catch a missing `url()`, but the check workflow does.
-- Every page must work without JavaScript. The demo is the only exception, and its text must still make sense without it.
+- Every page must work without JavaScript. The two demos (the front page and PDEStudio in the browser) are the only exceptions, and their text must still make sense without it.
 - The demo must stay pausable and must not start moving under `prefers-reduced-motion`.
 
 ## Pull requests
