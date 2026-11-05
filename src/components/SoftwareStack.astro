@@ -31,7 +31,7 @@ const inColumn = (group: string) =>
         <div class={`layer ${entry.data.layer ?? 'engine'}`}>
           <div class="package-name">{entry.data.name}</div>
           <p>{entry.data.summary}</p>
-          <PackageLinks name={entry.data.name} repo={entry.data.repo} docs={entry.data.docs} doi={entry.data.doi} demo={entry.data.demo} />
+          <PackageLinks name={entry.data.name} repo={entry.data.repo} docs={entry.data.docs} doi={entry.data.doi} demo={entry.data.demo} explore={entry.data.explore} />
         </div>
       ))}
     </div>

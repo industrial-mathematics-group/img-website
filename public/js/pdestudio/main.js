@@ -1,4 +1,4 @@
-// Entry point of the PDEStudio demo page (src/pages/software/pdestudio.astro): the example menu and the studio.
+// Entry point of the PDEStudio demo page (src/pages/explore/pdestudio.astro): the example menu and the studio.
 import { Studio } from './studio.js';
 
 function main() {

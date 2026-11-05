@@ -7,13 +7,15 @@ interface Props {
   docs?: string;
   doi?: string;
   demo?: string;
+  explore?: string;
 }
 
-const { name, repo, docs, doi, demo } = Astro.props;
+const { name, repo, docs, doi, demo, explore } = Astro.props;
 ---
 
 <ul class="links" aria-label={`Links for ${name}`}>
   {demo && <li><a href={url(demo)}>Try it</a></li>}
+  {explore && <li><a href={url(explore)}>Explore</a></li>}
   {docs && <li><a href={docs}>Docs</a></li>}
   <li><a href={repo}>Code</a></li>
   {doi && <li><a href={`https://doi.org/${doi}`}>DOI</a></li>}
