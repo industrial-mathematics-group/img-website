@@ -1,6 +1,0 @@
-name: aidecl
-summary: Declares and checks how each file was created and reviewed, using the group's AI levels. It works like REUSE does for licences.
-group: tools
-language: Python
-repo: https://github.com/industrial-mathematics-group/aidecl
-explore: /explore/ai-declarations/

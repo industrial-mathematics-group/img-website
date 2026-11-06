@@ -1,6 +1,5 @@
-// Updates src/data/aidecl-badges.json with the AI declaration badges of our repositories, which their workflows
-// publish to the `badges` branch: aidecl-*.json for the declared files (aidecl lint) and ai-*.json for the
-// declared history of pull requests. The site shows them itself, so visitors load nothing from GitHub or shields.io.
+// Updates src/data/signoff-badges.json with the AI declaration badges of our repositories, which their workflows
+// publish to the `badges` branch: aisignoff-*.json for the declared files (aisignoff lint) and ai-*.json for the declared history of pull requests. The site shows them itself, so visitors load nothing from GitHub or shields.io.
 // A failed sync only warns and keeps the existing file, so an outage can't stop a deployment.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -11,17 +10,17 @@ export const REPOSITORIES = [
   'HyperCloud.jl',
   'PDEStudioCore.jl',
   'PDEStudio.jl',
-  'aidecl',
+  'aisignoff',
   'meshfree-solver-paper',
   'img-website',
 ];
 export const AXES = ['generation', 'human-review', 'ai-review'];
-// The badge files: per kind, the file name of each axis.
+// The badge files: per kind, the prefixes in order of preference and the name of each axis.
 const KINDS = {
-  files: { generation: 'aidecl-generation', 'human-review': 'aidecl-human-review', 'ai-review': 'aidecl-ai-review' },
-  changes: { generation: 'ai-generation', 'human-review': 'ai-human-review', 'ai-review': 'ai-review' },
+  files: { prefixes: ['aisignoff-'], axes: { generation: 'generation', 'human-review': 'human-review', 'ai-review': 'ai-review' } },
+  changes: { prefixes: ['ai-'], axes: { generation: 'generation', 'human-review': 'human-review', 'ai-review': 'review' } },
 };
-const OUTPUT = new URL('../src/data/aidecl-badges.json', import.meta.url);
+const OUTPUT = new URL('../src/data/signoff-badges.json', import.meta.url);
 
 const badgeUrl = (repo, file) => `https://raw.githubusercontent.com/${OWNER}/${repo}/badges/${file}.json`;
 
@@ -50,9 +49,14 @@ async function main() {
   const repositories = [];
   for (const repo of REPOSITORIES) {
     const entry = { repo, url: `https://github.com/${OWNER}/${repo}` };
-    for (const [kind, files] of Object.entries(KINDS)) {
-      const badges = await Promise.all(AXES.map((axis) => fetchBadge(badgeUrl(repo, files[axis]))));
-      if (badges.every(Boolean)) entry[kind] = Object.fromEntries(AXES.map((axis, i) => [axis, badges[i]]));
+    for (const [kind, { prefixes, axes }] of Object.entries(KINDS)) {
+      for (const prefix of prefixes) {
+        const badges = await Promise.all(AXES.map((axis) => fetchBadge(badgeUrl(repo, prefix + axes[axis]))));
+        if (badges.every(Boolean)) {
+          entry[kind] = Object.fromEntries(AXES.map((axis, i) => [axis, badges[i]]));
+          break;
+        }
+      }
     }
     repositories.push(entry);
   }

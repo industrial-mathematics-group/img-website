@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import badges from '../../data/aidecl-badges.json';
+import badges from '../../data/signoff-badges.json';
 import { site } from '../../data/site';
-import { LEVELS, describe, type Axis } from '../../lib/aidecl';
+import { LEVELS, describe, type Axis } from '../../lib/aisignoff';
 
-const aidecl = 'https://github.com/industrial-mathematics-group/aidecl';
+const tool = 'https://github.com/industrial-mathematics-group/aisignoff';
+const docs = 'https://industrial-mathematics-group.github.io/aisignoff/';
+const pypi = 'https://pypi.org/project/aisignoff/';
+const doi = '10.5281/zenodo.24020702';
 const axes: { key: Axis; letter: string; title: string; question: string; badge: string }[] = [
   { key: 'generation', letter: 'G', title: 'Generation', question: 'How much of it did an AI generate?', badge: 'generation' },
   { key: 'human', letter: 'H', title: 'Human review', question: 'How thoroughly did a human review it?', badge: 'human-review' },
@@ -15,12 +18,12 @@ const example = describe(initial);
 const updated = badges.updated ? new Date(badges.updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '';
 type Badge = { label: string; message: string; weight: string; shares: { level: string; percent: number }[] };
 const kinds = [
-  { key: 'files', title: 'Files', note: 'declared in AIDECL.toml' },
+  { key: 'files', title: 'Files', note: 'declared in SIGNOFF.toml' },
   { key: 'changes', title: 'Pull requests', note: 'declared in the merged pull requests' },
 ] as const;
 ---
 
-<Layout title="AI declarations" description="How we declare the use of AI in our code, and aidecl, the tool that checks it.">
+<Layout title="AI declarations" description="How we declare the use of AI in our code, and aisignoff, the tool that checks it.">
   <div class="wrap">
     <div class="page-head">
       <h1>AI declarations</h1>
@@ -68,7 +71,7 @@ const kinds = [
           <p class="builder-label" data-builder-label>{example.label}</p>
           <p data-builder-sentence>{example.sentence}</p>
           <ul class="builder-problems" data-builder-problems hidden></ul>
-          <p class="builder-caption">In <code>AIDECL.toml</code>, for the files in <code>src/</code>:</p>
+          <p class="builder-caption">In <code>SIGNOFF.toml</code>, for the files in <code>src/</code>:</p>
           <pre><code data-builder-toml>{example.toml}</code></pre>
           <p class="builder-caption">Or written by the tool:</p>
           <pre><code data-builder-command>{example.command}</code></pre>
@@ -80,7 +83,7 @@ const kinds = [
       <h2>Two places to declare</h2>
       <div class="prose">
         <p><strong>Pull requests</strong> declare each change. The pull request template asks a few questions, a check derives the levels from the ticked boxes, labels the pull request and keeps the declaration in the history of the main branch. This suits code that is developed through pull requests.</p>
-        <p><strong>Files</strong> declare the current state of a repository in an <code>AIDECL.toml</code>, which works like <a href="https://reuse.software">REUSE</a> does for licences: paths with their levels, the general default first and the exceptions after it. Source files can also carry the declaration in a comment in their first lines. This suits results, data, notebooks and papers, and repositories that are published in a single commit.</p>
+        <p><strong>Files</strong> declare the current state of a repository in a <code>SIGNOFF.toml</code>, which works like <a href="https://reuse.software">REUSE</a> does for licences: paths with their levels, the general default first and the exceptions after it. Source files can also carry the declaration in a comment in their first lines. This suits results, data, notebooks and papers, and repositories that are published in a single commit.</p>
       </div>
     </section>
 
@@ -123,32 +126,38 @@ const kinds = [
     </section>
 
     <section class="section">
-      <h2>The tool: aidecl</h2>
+      <h2>The tool: aisignoff</h2>
       <div class="prose">
-        <p><a href={aidecl}>aidecl</a> checks file declarations, like <code>reuse lint</code> checks licences. It needs Python 3.11 or newer and nothing else:</p>
-        <pre><code>pipx install "git+https://github.com/industrial-mathematics-group/aidecl"
+        <p><a href={tool}>aisignoff</a> checks file declarations, like <code>reuse lint</code> checks licences. The name is meant both ways: the AI signs off, and so does the human. It needs Python 3.11 or newer and nothing else, and installs from <a href={pypi}>PyPI</a>:</p>
+        <pre><code># or: uv tool install aisignoff, or: pip install aisignoff
+pipx install aisignoff
 
 # a default for every file
-aidecl init -g G0 -H H2 -a A0 --reviewed-by "Jane Doe"
+aisignoff init -g G0 -H H2 -a A0 --reviewed-by "Jane Doe"
 
 # the exceptions, by file, folder or glob
-aidecl annotate results/ -g G2 -H H1 -a A1 \
+aisignoff annotate results/ -g G2 -H H1 -a A1 \
     --assisted-by "Claude Opus 5.5 (Anthropic)" \
     --ai-reviewed-by "Claude Opus 5.5 (Anthropic), same session" \
     --reviewed-by "Jane Doe"
 
 # is every file declared?
-aidecl lint</code></pre>
+aisignoff lint</code></pre>
         <p><code>annotate</code> refuses declarations that break the rules above, <code>lint</code> fails while any file lacks a valid declaration, and <code>badge</code> writes the badges shown on this page. A repository can raise the minimum levels in a <code>[policy]</code> table, for example a line-by-line human review for everything an agent wrote.</p>
-        <p>Our repositories run it in a ready-made workflow on every push and pull request, which also publishes the badges. <code>aidecl migrate</code> converts declarations from the earlier versions of the policy.</p>
-        <p><a href={aidecl}>aidecl on GitHub</a></p>
+        <p>Our repositories run it in the ready-made <em>File-signoff</em> workflow on every push and pull request, which also publishes the badges. The tool was called aidecl until version 0.3.0; <code>aisignoff migrate</code> renames an <code>AIDECL.toml</code> to <code>SIGNOFF.toml</code> and converts declarations from earlier versions of the policy.</p>
+        <ul class="links">
+          <li><a href={docs}>Documentation</a></li>
+          <li><a href={tool}>Code</a></li>
+          <li><a href={pypi}>PyPI</a></li>
+          <li><a href={`https://doi.org/${doi}`}>DOI</a></li>
+        </ul>
       </div>
     </section>
   </div>
 </Layout>
 
 <script>
-  import { describe } from '../../lib/aidecl';
+  import { describe } from '../../lib/aisignoff';
 
   const form = document.querySelector<HTMLFormElement>('[data-builder]');
   const field = (name: string) => document.querySelector<HTMLElement>(`[data-builder-${name}]`)!;
