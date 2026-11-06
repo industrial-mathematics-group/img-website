@@ -65,8 +65,8 @@ const currentPath = Astro.url.pathname;
       <div class="wrap">
         <div class="footer-grid">
           <div>
-            <p><a href={site.university.url}>{site.university.name}</a></p>
-            {site.address.map((line) => <p>{line}</p>)}
+            <p>{site.name}</p>
+            <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
           </div>
           <ul>
             <li><a href={site.github}>GitHub</a></li>

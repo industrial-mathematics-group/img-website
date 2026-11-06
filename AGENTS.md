@@ -23,7 +23,7 @@ The Node.js version is set in `.nvmrc`, and all workflows read it from there. To
 | A paper | `src/content/publications/<first-author-year>.yaml` |
 | A news post | `src/content/news/<slug>.md` |
 | Imprint and privacy | `src/content/legal/` |
-| Name, address, navigation, external links | `src/data/site.ts` |
+| Name, contact address, navigation, external links | `src/data/site.ts` |
 | Colours, type and layout | `src/styles/global.css` |
 | Allowed fields for all content | `src/content.config.ts` |
 | Front-page demo | `public/js/traffic.js` (drawing and controls) and `public/js/kinetic-traffic.js` (the model), explained in `src/content/news/traffic-demo.md` |
