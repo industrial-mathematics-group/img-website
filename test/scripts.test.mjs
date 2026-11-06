@@ -6,6 +6,7 @@ import { test } from 'node:test';
 import { basePath, withBase } from '../scripts/base-path.mjs';
 import { checkLinks } from '../scripts/check-links.mjs';
 import { normalise } from '../scripts/sync-zenodo.mjs';
+import { normalise as normaliseBadge } from '../scripts/sync-aidecl-badges.mjs';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/zenodo-records.json', import.meta.url), 'utf8'));
 
@@ -61,4 +62,19 @@ test('checkLinks resolves links under a base path and rejects links outside it',
     'index.html: outside the base path /site: /about/',
     'index.html: missing /site/nope/',
   ]);
+});
+
+test('normaliseBadge splits an AI declaration badge into levels and shares', () => {
+  assert.deepEqual(normaliseBadge({ schemaVersion: 1, label: 'AI generation (lines)', message: 'G2 68% · G3 32%', color: '4063D8' }), {
+    label: 'AI generation (lines)',
+    message: 'G2 68% · G3 32%',
+    weight: 'lines',
+    shares: [
+      { level: 'G2', percent: 68 },
+      { level: 'G3', percent: 32 },
+    ],
+  });
+  assert.equal(normaliseBadge({ label: 'AI review', message: 'A0 15% · undeclared 2%' }).weight, 'files');
+  assert.equal(normaliseBadge({ label: 'AI generation', message: 'no declarations yet' }), null);
+  assert.throws(() => normaliseBadge({ message: 'G1 100%' }), /label/);
 });

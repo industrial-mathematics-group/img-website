@@ -2,9 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import { url } from '../../data/site';
 
-// Figures of the manuscript, converted by tools/hypercloud-figures/convert.py into public/hypercloud/. Captions
-// follow the captions of the manuscript (meshfree-solver-paper, paper/main_light.tex).
-const paper = 'https://github.com/industrial-mathematics-group/meshfree-solver-paper';
+// Figures of the preprint, converted by tools/hypercloud-figures/convert.py into public/hypercloud/. Captions
+// follow the captions of the preprint (meshfree-solver-paper, paper/main_light.tex).
+const paper = 'https://zenodo.org/records/23807966';
+const supplement = 'https://github.com/industrial-mathematics-group/meshfree-solver-paper';
 const figure = (name: string, width: number, height: number, alt: string, caption: string) => ({ name, width, height, alt, caption });
 
 const shocks = [
@@ -39,7 +40,7 @@ const shocks = [
     <div class="page-head">
       <h1>HyperCloud results</h1>
       <p>
-        <a href="https://github.com/industrial-mathematics-group/HyperCloud.jl">HyperCloud.jl</a> and <a href="https://github.com/industrial-mathematics-group/HyperCloudCore.jl">HyperCloudCore.jl</a> solve hyperbolic conservation laws on scattered point clouds with meshfree MUSCL schemes. The figures on this page are from our manuscript <a href={paper}>High-order meshfree MUSCL schemes with a posteriori order detection for hyperbolic systems on scattered point clouds</a> by Pascal Jung, Klaas Willems and Axel Klar.
+        <a href="https://github.com/industrial-mathematics-group/HyperCloud.jl">HyperCloud.jl</a> and <a href="https://github.com/industrial-mathematics-group/HyperCloudCore.jl">HyperCloudCore.jl</a> solve hyperbolic conservation laws on scattered point clouds with meshfree MUSCL schemes. The figures on this page are from our preprint <a href={paper}>High-order meshfree MUSCL schemes with a posteriori order detection for hyperbolic systems on scattered point clouds</a> by Pascal Jung, Klaas Willems and Axel Klar, with its <a href={supplement}>supplementary material</a>.
       </p>
     </div>
 
@@ -56,7 +57,7 @@ const shocks = [
     <section class="section">
       <h2>Shock problems in two dimensions</h2>
       <div class="prose">
-        <p>The Euler equations with γ = 1.4 on three standard problems. All 57 runs of the manuscript reach the final time with positive density and pressure, and with the full derivative degree the third- and fourth-order schemes resolve slip lines and roll-ups markedly better than the second-order scheme.</p>
+        <p>The Euler equations with γ = 1.4 on three standard problems. All 57 runs of the preprint reach the final time with positive density and pressure, and with the full derivative degree the third- and fourth-order schemes resolve slip lines and roll-ups markedly better than the second-order scheme.</p>
       </div>
     </section>
     {shocks.map((problem) => (
