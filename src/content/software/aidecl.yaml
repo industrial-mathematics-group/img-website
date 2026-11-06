@@ -3,3 +3,4 @@ summary: Declares and checks how each file was created and reviewed, using the g
 group: tools
 language: Python
 repo: https://github.com/industrial-mathematics-group/aidecl
+explore: /explore/ai-declarations/
