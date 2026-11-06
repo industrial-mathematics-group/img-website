@@ -1,6 +1,5 @@
 // Updates src/data/signoff-badges.json with the AI declaration badges of our repositories, which their workflows
-// publish to the `badges` branch: aisignoff-*.json for the declared files (aisignoff lint; aidecl-*.json before the
-// rename from aidecl) and ai-*.json for the declared history of pull requests. The site shows them itself, so visitors load nothing from GitHub or shields.io.
+// publish to the `badges` branch: aisignoff-*.json for the declared files (aisignoff lint) and ai-*.json for the declared history of pull requests. The site shows them itself, so visitors load nothing from GitHub or shields.io.
 // A failed sync only warns and keeps the existing file, so an outage can't stop a deployment.
 import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
@@ -16,10 +15,9 @@ export const REPOSITORIES = [
   'img-website',
 ];
 export const AXES = ['generation', 'human-review', 'ai-review'];
-// The badge files: per kind, the prefixes in order of preference (repositories that haven't migrated from aidecl yet
-// still publish aidecl-*.json), and the name of each axis.
+// The badge files: per kind, the prefixes in order of preference and the name of each axis.
 const KINDS = {
-  files: { prefixes: ['aisignoff-', 'aidecl-'], axes: { generation: 'generation', 'human-review': 'human-review', 'ai-review': 'ai-review' } },
+  files: { prefixes: ['aisignoff-'], axes: { generation: 'generation', 'human-review': 'human-review', 'ai-review': 'ai-review' } },
   changes: { prefixes: ['ai-'], axes: { generation: 'generation', 'human-review': 'human-review', 'ai-review': 'review' } },
 };
 const OUTPUT = new URL('../src/data/signoff-badges.json', import.meta.url);
