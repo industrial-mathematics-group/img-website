@@ -34,9 +34,8 @@ const people = (await getCollection('people')).sort((a, b) => a.data.order - b.d
     <section class="section">
       <h2>Contact</h2>
       <div>
-        <p><a href={site.university.url}>{site.university.name}</a></p>
-        <p>{site.address.join(', ')}</p>
-        <p>For questions about our software, please <a href={site.github}>open an issue in the relevant repository</a>.</p>
+        <p>Write to <a href={`mailto:${site.email}`}>{site.email}</a>, or find us on <a href={site.github}>GitHub</a>.</p>
+        <p>For questions about our software, please open an issue in the relevant repository.</p>
       </div>
     </section>
   </div>
