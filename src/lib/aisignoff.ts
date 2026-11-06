@@ -1,6 +1,6 @@
-// The levels of the group's AI policy and the rules aidecl checks, for the declaration builder on
+// The levels of the group's AI policy and the rules aisignoff checks, for the declaration builder on
 // /explore/ai-declarations/. Sources: CONTRIBUTING.md#ai-assisted-contributions in industrial-mathematics-group/.github
-// and the README of industrial-mathematics-group/aidecl.
+// and the documentation of industrial-mathematics-group/aisignoff.
 
 export type Axis = 'generation' | 'human' | 'ai';
 
@@ -41,7 +41,7 @@ export interface Described {
 
 const level = (axis: Axis, i: number) => LEVELS[axis][i].level;
 
-// The rules of the policy that depend only on the levels (aidecl lint checks the same).
+// The rules of the policy that depend only on the levels (aisignoff lint checks the same).
 export function problems({ generation, ai }: Declaration): string[] {
   const out: string[] = [];
   if (generation >= 1 && ai === 0) out.push('AI-written content must at least be self-checked: G1–G3 need A1 or higher.');
@@ -68,7 +68,7 @@ export function describe(d: Declaration, path = 'src/**'): Described {
   ].join('\n');
   const folder = path.replace(/\/\*\*$/, '/');
   const command = [
-    `aidecl annotate ${folder} -g ${g} -H ${h} -a ${a}`,
+    `aisignoff annotate ${folder} -g ${g} -H ${h} -a ${a}`,
     ...(assisted ? [`    --assisted-by "${assisted}"`] : []),
     ...(aiReviewer ? [`    --ai-reviewed-by "${aiReviewer}"`] : []),
     '    --reviewed-by "Jane Doe"',

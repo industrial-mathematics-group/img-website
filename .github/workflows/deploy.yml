@@ -33,7 +33,7 @@ jobs:
       - name: Update Zenodo records
         run: node scripts/sync-zenodo.mjs
       - name: Update the AI declaration badges
-        run: node scripts/sync-aidecl-badges.mjs
+        run: node scripts/sync-signoff-badges.mjs
       # The site is served at the root of the custom domain, or under /<repository>/ on
       # github.io while none is set. The build reads the address from PAGES_URL.
       - name: Read the GitHub Pages address

@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import { basePath, withBase } from '../scripts/base-path.mjs';
 import { checkLinks } from '../scripts/check-links.mjs';
 import { normalise } from '../scripts/sync-zenodo.mjs';
-import { normalise as normaliseBadge } from '../scripts/sync-aidecl-badges.mjs';
+import { normalise as normaliseBadge } from '../scripts/sync-signoff-badges.mjs';
 
 const fixture = JSON.parse(readFileSync(new URL('./fixtures/zenodo-records.json', import.meta.url), 'utf8'));
 

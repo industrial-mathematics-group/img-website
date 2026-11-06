@@ -1,0 +1,8 @@
+name: aisignoff
+summary: "Sign off on AI use per file: declares and checks AI generation (G0–G3), human review (H0–H3) and AI review (A0–A3). It works like REUSE does for licences."
+group: tools
+language: Python
+repo: https://github.com/industrial-mathematics-group/aisignoff
+docs: https://industrial-mathematics-group.github.io/aisignoff/
+doi: 10.5281/zenodo.24020702
+explore: /explore/ai-declarations/
