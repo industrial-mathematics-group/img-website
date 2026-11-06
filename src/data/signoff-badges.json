@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05T21:07:03.131Z",
+  "updated": "2026-11-06T21:08:08.386Z",
   "repositories": [
     {
       "repo": "HyperCloudCore.jl",
@@ -7,41 +7,88 @@
       "files": {
         "generation": {
           "label": "AI generation (lines)",
-          "message": "G2 56% · G3 44%",
+          "message": "G2 12% · G3 88%",
           "weight": "lines",
           "shares": [
             {
               "level": "G2",
-              "percent": 56
+              "percent": 12
             },
             {
               "level": "G3",
-              "percent": 44
+              "percent": 88
             }
           ]
         },
         "human-review": {
           "label": "human review (lines)",
-          "message": "H1 30% · H2 70%",
+          "message": "H0 72% · H1 11% · H2 17%",
           "weight": "lines",
           "shares": [
             {
+              "level": "H0",
+              "percent": 72
+            },
+            {
               "level": "H1",
-              "percent": 30
+              "percent": 11
             },
             {
               "level": "H2",
-              "percent": 70
+              "percent": 17
             }
           ]
         },
         "ai-review": {
           "label": "AI review (lines)",
-          "message": "A1 100%",
+          "message": "A2 100%",
           "weight": "lines",
           "shares": [
             {
-              "level": "A1",
+              "level": "A2",
+              "percent": 100
+            }
+          ]
+        }
+      },
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G2 50% · G3 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 50
+            },
+            {
+              "level": "G3",
+              "percent": 50
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 50% · H1 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 50
+            },
+            {
+              "level": "H1",
+              "percent": 50
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A2 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A2",
               "percent": 100
             }
           ]
@@ -54,41 +101,88 @@
       "files": {
         "generation": {
           "label": "AI generation (lines)",
-          "message": "G2 47% · G3 53%",
+          "message": "G2 24% · G3 76%",
           "weight": "lines",
           "shares": [
             {
               "level": "G2",
-              "percent": 47
+              "percent": 24
             },
             {
               "level": "G3",
-              "percent": 53
+              "percent": 76
             }
           ]
         },
         "human-review": {
           "label": "human review (lines)",
-          "message": "H1 33% · H2 67%",
+          "message": "H0 53% · H1 12% · H2 35%",
           "weight": "lines",
           "shares": [
             {
+              "level": "H0",
+              "percent": 53
+            },
+            {
               "level": "H1",
-              "percent": 33
+              "percent": 12
             },
             {
               "level": "H2",
-              "percent": 67
+              "percent": 35
             }
           ]
         },
         "ai-review": {
           "label": "AI review (lines)",
-          "message": "A1 100%",
+          "message": "A2 100%",
           "weight": "lines",
           "shares": [
             {
-              "level": "A1",
+              "level": "A2",
+              "percent": 100
+            }
+          ]
+        }
+      },
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G2 50% · G3 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 50
+            },
+            {
+              "level": "G3",
+              "percent": 50
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 50% · H1 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 50
+            },
+            {
+              "level": "H1",
+              "percent": 50
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A2 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A2",
               "percent": 100
             }
           ]
@@ -101,41 +195,88 @@
       "files": {
         "generation": {
           "label": "AI generation (lines)",
-          "message": "G2 58% · G3 42%",
+          "message": "G2 25% · G3 75%",
           "weight": "lines",
           "shares": [
             {
               "level": "G2",
-              "percent": 58
+              "percent": 25
             },
             {
               "level": "G3",
-              "percent": 42
+              "percent": 75
             }
           ]
         },
         "human-review": {
           "label": "human review (lines)",
-          "message": "H1 31% · H2 69%",
+          "message": "H0 56% · H1 15% · H2 29%",
           "weight": "lines",
           "shares": [
             {
+              "level": "H0",
+              "percent": 56
+            },
+            {
               "level": "H1",
-              "percent": 31
+              "percent": 15
             },
             {
               "level": "H2",
-              "percent": 69
+              "percent": 29
             }
           ]
         },
         "ai-review": {
           "label": "AI review (lines)",
-          "message": "A1 100%",
+          "message": "A2 100%",
           "weight": "lines",
           "shares": [
             {
-              "level": "A1",
+              "level": "A2",
+              "percent": 100
+            }
+          ]
+        }
+      },
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G2 50% · G3 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 50
+            },
+            {
+              "level": "G3",
+              "percent": 50
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 50% · H1 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 50
+            },
+            {
+              "level": "H1",
+              "percent": 50
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A2 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A2",
               "percent": 100
             }
           ]
@@ -148,41 +289,84 @@
       "files": {
         "generation": {
           "label": "AI generation (lines)",
-          "message": "G2 68% · G3 32%",
+          "message": "G2 6% · G3 94%",
           "weight": "lines",
           "shares": [
             {
               "level": "G2",
-              "percent": 68
+              "percent": 6
             },
             {
               "level": "G3",
-              "percent": 32
+              "percent": 94
             }
           ]
         },
         "human-review": {
           "label": "human review (lines)",
-          "message": "H1 25% · H2 75%",
+          "message": "H0 82% · H1 9% · H2 9%",
           "weight": "lines",
           "shares": [
             {
+              "level": "H0",
+              "percent": 82
+            },
+            {
               "level": "H1",
-              "percent": 25
+              "percent": 9
             },
             {
               "level": "H2",
-              "percent": 75
+              "percent": 9
             }
           ]
         },
         "ai-review": {
           "label": "AI review (lines)",
-          "message": "A1 100%",
+          "message": "A2 100%",
           "weight": "lines",
           "shares": [
             {
-              "level": "A1",
+              "level": "A2",
+              "percent": 100
+            }
+          ]
+        }
+      },
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G3 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G3",
+              "percent": 100
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 50% · H1 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 50
+            },
+            {
+              "level": "H1",
+              "percent": 50
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A2 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A2",
               "percent": 100
             }
           ]
@@ -190,21 +374,21 @@
       }
     },
     {
-      "repo": "aidecl",
-      "url": "https://github.com/industrial-mathematics-group/aidecl",
+      "repo": "aisignoff",
+      "url": "https://github.com/industrial-mathematics-group/aisignoff",
       "files": {
         "generation": {
           "label": "AI generation",
-          "message": "G0 6% · G3 94%",
+          "message": "G0 3% · G3 97%",
           "weight": "files",
           "shares": [
             {
               "level": "G0",
-              "percent": 6
+              "percent": 3
             },
             {
               "level": "G3",
-              "percent": 94
+              "percent": 97
             }
           ]
         },
@@ -221,79 +405,16 @@
         },
         "ai-review": {
           "label": "AI review",
-          "message": "A1 28% · A2 72%",
+          "message": "A1 93% · A2 7%",
           "weight": "files",
           "shares": [
             {
               "level": "A1",
-              "percent": 28
+              "percent": 93
             },
             {
               "level": "A2",
-              "percent": 72
-            }
-          ]
-        }
-      }
-    },
-    {
-      "repo": "meshfree-solver-paper",
-      "url": "https://github.com/industrial-mathematics-group/meshfree-solver-paper",
-      "files": {
-        "generation": {
-          "label": "AI generation",
-          "message": "G0 20% · G2 3% · G3 77%",
-          "weight": "files",
-          "shares": [
-            {
-              "level": "G0",
-              "percent": 20
-            },
-            {
-              "level": "G2",
-              "percent": 3
-            },
-            {
-              "level": "G3",
-              "percent": 77
-            }
-          ]
-        },
-        "human-review": {
-          "label": "human review",
-          "message": "H0 74% · H1 3% · H2 23%",
-          "weight": "files",
-          "shares": [
-            {
-              "level": "H0",
-              "percent": 74
-            },
-            {
-              "level": "H1",
-              "percent": 3
-            },
-            {
-              "level": "H2",
-              "percent": 23
-            }
-          ]
-        },
-        "ai-review": {
-          "label": "AI review",
-          "message": "A0 15% · A1 18% · A2 67%",
-          "weight": "files",
-          "shares": [
-            {
-              "level": "A0",
-              "percent": 15
-            },
-            {
-              "level": "A1",
-              "percent": 18
-            },
-            {
-              "level": "A2",
-              "percent": 67
+              "percent": 7
             }
           ]
         }
@@ -339,36 +460,142 @@
       }
     },
     {
-      "repo": "img-website",
-      "url": "https://github.com/industrial-mathematics-group/img-website",
-      "changes": {
+      "repo": "meshfree-solver-paper",
+      "url": "https://github.com/industrial-mathematics-group/meshfree-solver-paper",
+      "files": {
         "generation": {
           "label": "AI generation",
-          "message": "G2 20% · G3 80%",
+          "message": "G0 20% · G2 3% · G3 77%",
           "weight": "files",
           "shares": [
             {
-              "level": "G2",
+              "level": "G0",
               "percent": 20
             },
             {
+              "level": "G2",
+              "percent": 3
+            },
+            {
               "level": "G3",
-              "percent": 80
+              "percent": 77
             }
           ]
         },
         "human-review": {
           "label": "human review",
-          "message": "H0 80% · H2 20%",
+          "message": "H0 75% · H1 2% · H2 23%",
           "weight": "files",
           "shares": [
             {
               "level": "H0",
-              "percent": 80
+              "percent": 75
+            },
+            {
+              "level": "H1",
+              "percent": 2
             },
             {
               "level": "H2",
-              "percent": 20
+              "percent": 23
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A0 15% · A1 5% · A2 80%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A0",
+              "percent": 15
+            },
+            {
+              "level": "A1",
+              "percent": 5
+            },
+            {
+              "level": "A2",
+              "percent": 80
+            }
+          ]
+        }
+      },
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G2 17% · G3 83%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 17
+            },
+            {
+              "level": "G3",
+              "percent": 83
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 50% · H1 50%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 50
+            },
+            {
+              "level": "H1",
+              "percent": 50
+            }
+          ]
+        },
+        "ai-review": {
+          "label": "AI review",
+          "message": "A1 100%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "A1",
+              "percent": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "repo": "img-website",
+      "url": "https://github.com/industrial-mathematics-group/img-website",
+      "changes": {
+        "generation": {
+          "label": "AI generation",
+          "message": "G2 29% · G3 71%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "G2",
+              "percent": 29
+            },
+            {
+              "level": "G3",
+              "percent": 71
+            }
+          ]
+        },
+        "human-review": {
+          "label": "human review",
+          "message": "H0 71% · H2 29%",
+          "weight": "files",
+          "shares": [
+            {
+              "level": "H0",
+              "percent": 71
+            },
+            {
+              "level": "H2",
+              "percent": 29
             }
           ]
         },
